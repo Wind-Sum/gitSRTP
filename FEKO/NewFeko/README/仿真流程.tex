@@ -1,0 +1,319 @@
+% !TEX program = xelatex
+\documentclass[12pt,a4paper]{ctexart}
+
+\usepackage{geometry}
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    columns=flexible,
+    showstringspaces=false,
+}
+
+\title{\textbf{FEKO 多点电磁仿真全流程}}
+\author{}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{总体架构}
+
+本流程实现了一套端到端的 FEKO 电磁仿真自动化方案，包含三个层级:
+
+\begin{enumerate}[itemsep=4pt]
+    \item \textbf{FEKO 层}：CADFEKO 建模 + EDITFEKO 脚本 + 命令行批量求解
+    \item \textbf{MATLAB 层}：.pre 文件自动生成 + S 参数读取 + REV 相位恢复 + 3D 定位
+    \item \textbf{Python 层}：结果可视化 (热力图/3D散点/统计图)
+\end{enumerate}
+
+三层的衔接关系如:
+
+\begin{center}
+\begin{tabular}{c}
+\textbf{MATLAB: gen\_multi\_pre.m} \\
+$\downarrow$ \\
+\textbf{N 个 \texttt{8x8x2\_posN.pre}} \\
+$\downarrow$ \\
+\textbf{FEKO: runfeko 批量求解} \\
+$\downarrow$ \\
+\textbf{N 个 \texttt{8x8x2\_posN\_SParameter1.s129p}} \\
+$\downarrow$ \\
+\textbf{MATLAB: batch\_process.m (REV + MUSIC + CBF)} \\
+$\downarrow$ \\
+\textbf{误差矩阵 (\texttt{batch\_results.mat})} \\
+$\downarrow$ \\
+\textbf{Python: visualize\_results.py} \\
+$\downarrow$ \\
+\textbf{图表 + LaTeX 仿真报告}
+\end{tabular}
+\end{center}
+
+\section{第一步：CADFEKO 建模}
+
+\subsection{几何体创建}
+
+\begin{enumerate}[itemsep=3pt]
+    \item 新建 CADFEKO 项目，创建 $10\times8\times3$ m 长方体房间 (6 个 Rectangle)
+    \item 创建参考偶极子天线 \texttt{dipole} (细长圆柱, 端口 \texttt{Port1}), 放在房间外
+    \item 创建发射偶极子天线 \texttt{source\_dipole} (细长圆柱, 端口 \texttt{SPort1}), 放在 $[5,4,1.5]$
+    \item 两偶极子均平行于 XOY 平面 (水平极化)
+\end{enumerate}
+
+\subsection{材质与网格}
+
+\begin{enumerate}[itemsep=3pt]
+    \item 在介质库创建混凝土介质: 相对介电常数 $5.5$, 损耗正切 $0.2$
+    \item 创建涂层 \texttt{Concrete\_Wall}: 厚度 0.3 m, 基于混凝土介质
+    \item 将涂层应用到 6 个 Rectangle 的面
+    \item Create Mesh: 天线细网格, 墙面粗网格 (UTD 用多边板近似)
+\end{enumerate}
+
+\subsection{求解设置}
+
+\begin{itemize}
+    \item 频率: 2.4 GHz
+    \item UTD: 启用, 最大反射次数 = 1
+    \item Skin effect: Concrete\_Wall 涂层应用到 6 面墙
+\end{itemize}
+
+\subsection{导出}
+
+CADFEKO 保存后自动生成 \texttt{8x8x2.cfm} 和 \texttt{8x8x2.pre}。
+
+\textbf{注意}：此后 \textbf{不再使用 CADFEKO 打开该项目}，否则它会覆盖手动编辑的 .pre 文件。所有后续修改都在 .pre 文本中进行。
+
+\section{第二步：EDITFEKO 脚本编辑}
+
+打开 \texttt{8x8x2.pre}，在其基础上补入三块内容。
+
+\subsection{阵列 TG 复制循环}
+
+\begin{lstlisting}
+** Generate the array
+!!for #i=1 to 128
+#x=fileread("two_arrays_8x8.inc",#i+1,1)+1
+#y=fileread("two_arrays_8x8.inc",#i+1,2)
+#z=fileread("two_arrays_8x8.inc",#i+1,3)
+TG:1 : dipole.Wire1 : dipole.Wire1 : #i : 2 : : : : #x : #y : #z
+TG:1 : dipole.Wire1.Port1 : dipole.Wire1.Port1 : #i : 2 : : : : #x : #y : #z
+!!next
+\end{lstlisting}
+
+从 \texttt{two\_arrays\_8x8.inc} 读取 128 个阵元坐标，逐个平移复制参考偶极子。
+
+\subsection{发射源 TG (批量仿真用)}
+
+\begin{lstlisting}
+** Move source to target position
+#sx = -3.000000
+#sy = -2.000000
+#sz = -1.000000
+TG:1 : source_dipole.SWire1 : source_dipole.SWire1 : 99 : 2 : : : : #sx : #sy : #sz
+TG:1 : source_dipole.SWire1.SPort1 : source_dipole.SWire1.SPort1 : 99 : 2 : ...
+\end{lstlisting}
+
+TG 索引固定为 99 (避开 PREFEKO 变量 \texttt{\#i} 冲突)。参考点 $[5,4,1.5]$ 时跳过 TG，直接使用原端口。
+
+\subsection{S 参数配置}
+
+\begin{lstlisting}
+** SParameterConfiguration1
+A1: 0 : source_dipole.SWire1.SPort100 : 0 :  :  : 1 : 0 :  :  :  : 50
+!!for #i=2 to 129
+A1: 1 : dipole.Wire1.Port#i : 0 :  :  : 0 : 0 :  :  :  : 50
+!!next
+SP: 1 : 1   ** SParameter1
+\end{lstlisting}
+
+129 端口 S 参数: Port1 = 发射 (50$\Omega$ 激励), Port2--129 = 128 接收阵元 (50$\Omega$ 负载)。
+
+\section{第三步：FEKO 命令行求解}
+
+单点求解命令:
+\begin{lstlisting}[language=bash]
+D:\Software\FEKO2022\feko\bin\runfeko.exe 8x8x2.pre
+\end{lstlisting}
+
+PREFEKO 读取 .pre + .cfm $\rightarrow$ 生成 .fek $\rightarrow$ 求解器运行 $\rightarrow$ 输出 .s129p。
+
+\section{第四步：多点批量自动化}
+
+\subsection{MATLAB: gen\_multi\_pre.m}
+
+定义源位置网格 (余弦间距, 边角密集):
+\begin{lstlisting}[language=matlab]
+x_list = 0.5 + 4.5*(1-cos(linspace(0,pi,4)));  % 0.5, 2.75, 7.25, 9.5
+y_list = 0.5 + 3.5*(1-cos(linspace(0,pi,5)));  % 0.5, 1.53, 4.0, 6.47, 7.5
+z_list = 0.3 + 1.2*(1-cos(linspace(0,pi,5)));  % 0.3, 0.65, 1.5, 2.35, 2.7
+\end{lstlisting}
+
+网格生成: \texttt{meshgrid(x\_list, y\_list, z\_list)} $\rightarrow$ 100 个 $[x,y,z]$ 坐标。
+
+对每个位置:
+\begin{itemize}
+    \item 计算 TG 平移量 $\Delta x = tx - 5, \Delta y = ty - 4, \Delta z = tz - 1.5$
+    \item 若平移量 $\approx 0$ (参考点): 跳过 TG, 端口标号用 \texttt{SPort1}
+    \item 若非参考点: 写入 TG 平移命令, 端口标号用 \texttt{SPort100}
+    \item 生成独立 \texttt{8x8x2\_posN.pre} 文件
+\end{itemize}
+
+同时生成 \texttt{run\_all.bat}:
+\begin{lstlisting}[language=bash]
+@echo off
+echo [time] 位置 1/100: (x,y,z)
+D:\Software\FEKO2022\feko\bin\runfeko.exe 8x8x2_pos1.pre
+if %errorlevel% neq 0 echo ERROR & pause
+... (重复 100 次)
+\end{lstlisting}
+
+\subsection{终端执行}
+
+\begin{lstlisting}[language=bash]
+del 8x8x2_pos*.pre; del 8x8x2_pos*.fek
+matlab -r "gen_multi_pre"           % 生成 .pre + run_all.bat
+.\run_all.bat                       % 批量运行 (~3小时)
+\end{lstlisting}
+
+每条命令的输出: PREFEKO 生成 .fek (910天线+6多边板) $\rightarrow$ 求解器 (MoM + UTD) $\rightarrow$ .s129p 文件。
+
+\section{第五步：MATLAB 后处理}
+
+\subsection{batch\_process.m 执行流程}
+
+\begin{enumerate}[itemsep=3pt]
+    \item 加载 \texttt{source\_positions.mat} (100 个源坐标)
+    \item 从 \texttt{two\_arrays\_8x8.inc} 和 \texttt{8x8x2.out} 读取阵列坐标
+    \item 对每个位置 $i = 1\to 100$:
+    \begin{enumerate}
+        \item 读 \texttt{8x8x2\_posi\_SParameter1.s129p}
+        \item 提取 129 端口 S 参数, 分离两个 64 元阵列
+        \item REV 三功率计算 (0$^\circ$/90$^\circ$/180$^\circ$ 逐阵元相移)
+        \item REV 公式解算复数响应 $k_m e^{jX_m}$
+        \item 3D MUSIC: 噪声子空间投影, 谱峰搜索 (101$\times$81$\times$31 点)
+        \item 3D CBF: 常规波束形成, 谱峰搜索 (同网格)
+        \item 记录估计位置和误差
+    \end{enumerate}
+    \item 汇总统计: 均值/中位/最值, 逐点误差表
+    \item 保存 \texttt{batch\_results.mat}, 导出 \texttt{results\_summary.txt}
+    \item 生成分层热力图 (MUSIC vs CBF)
+\end{enumerate}
+
+\section{第六步：Python 可视化}
+
+\texttt{output/visualize\_results.py} 读取 \texttt{batch\_results.mat}，生成 5 张图:
+
+\begin{longtable}{ll}
+\toprule
+\textbf{图号} & \textbf{内容} \\
+\midrule
+fig1 & 逐 z 层热力图矩阵 (5 层, 插值平滑, 含阵列标记) \\
+fig2 & 3D 空间散点图 (误差色标, 阵列位置) \\
+fig3 & 统计面板: 直方图 + CDF 累积分布 \\
+fig4 & 误差 vs. 到阵列距离 (按 z 着色) \\
+fig5 & 四象限综合信息图 (热力图 + 箱线图 + 统计摘要) \\
+\bottomrule
+\end{longtable}
+
+运行:
+\begin{lstlisting}[language=bash]
+pip install scipy matplotlib
+python visualize_results.py
+\end{lstlisting}
+
+\section{第七步：撰写仿真记录}
+
+\texttt{output/simulation\_record.tex} 为 LaTeX 报告模板，引用生成的 5 张图，包含:
+
+\begin{itemize}
+    \item 系统参数表
+    \item 全局 + 分层统计
+    \item 空间分布规律分析
+    \item 与 MATLAB 理想仿真的对比讨论
+    \item 结论与实际部署建议
+\end{itemize}
+
+编译:
+\begin{lstlisting}[language=bash]
+xelatex simulation_record.tex
+xelatex simulation_record.tex   % 跑两次处理交叉引用
+\end{lstlisting}
+
+\section{关键技术细节}
+
+\subsection{REV 算法}
+
+由三组合成功率 $\{P_0, P_{90}, P_{180}\}$ 解线性方程组:
+
+\[
+\begin{bmatrix} 1 & 1 & 1 \\ 1 & -j & j \\ 1 & -1 & -1 \end{bmatrix}
+\begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} =
+\begin{bmatrix} P_0 \\ P_{90} \\ P_{180} \end{bmatrix}
+\quad\Longrightarrow\quad
+\Delta\phi = \arg(x_2),\quad
+E_{mr} = \frac{E_m}{E_m + \bar{E}_m e^{j\Delta\phi}}
+\]
+
+\subsection{3D MUSIC}
+
+\[
+P_{\text{MUSIC}}(\mathbf{p}) = \frac{1}{\mathbf{a}^H(\mathbf{p})\,\mathbf{U}_n\mathbf{U}_n^H\,\mathbf{a}(\mathbf{p})}, \quad
+\mathbf{a}(\mathbf{p}) = \exp\!\big(-j\frac{2\pi}{\lambda}\|\mathbf{p}-\mathbf{r}_i\|\big)
+\]
+
+\subsection{3D CBF}
+
+\[
+P_{\text{CBF}}(\mathbf{p}) = |\mathbf{a}^H(\mathbf{p})\,\mathbf{x}|^2
+\]
+
+\subsection{端口编号规则}
+
+\begin{itemize}
+    \item 阵列端口: TG索引 $\#i$ 创建端口号 $\#i+1$ (原 Port1 已存在), 引用 \texttt{Port\#i}
+    \item 发射端口: TG索引 99 创建端口号 100, 引用 \texttt{SPort100}; 参考点直接引用 \texttt{SPort1}
+    \item S 参数矩阵: 行 = 129 端口, 列 1 = 发射到各接收端口的传输系数
+\end{itemize}
+
+\subsection{避坑指南}
+
+\begin{enumerate}[itemsep=3pt]
+    \item \textbf{CADFEKO 与 EDITFEKO 互斥}: 一旦手动编辑 .pre, 不要再打开 CADFEKO (会锁定设置或覆盖 .pre)
+    \item \textbf{网格密度}: 墙面用 UTD 粗网格 (多边板), 不能生成 98 万三角形 (否则 MoM 矩阵 > 16 TB)
+    \item \textbf{端口标签}: TG 复制后端口号 = 原号 + TG索引, 不是简单替换
+    \item \textbf{PREFEKO 变量}: 标签中的 \texttt{\#} 被解释为变量引用, 用 \texttt{\#\#} 转义, 或避免在标签中使用
+    \item \textbf{参考点重叠}: 当目标 = CADFEKO 中的原始天线位置时, 不能 TG (会导致线段重叠), 需直接引用原端口
+\end{enumerate}
+
+\section{省流版运行流程}
+
+\begin{center}
+\fbox{\begin{minipage}{0.82\textwidth}
+\vspace{6pt}
+\begin{enumerate}[itemsep=2pt, leftmargin=*]
+    \item \textbf{清理旧文件:} \quad \texttt{del 8x8x2\_pos*.pre; del 8x8x2\_pos*.fek}
+    \item \textbf{MATLAB 生成 .pre:} \quad \texttt{gen\_multi\_pre}
+    \item \textbf{终端批量 FEKO:} \quad \texttt{.\textbackslash run\_all.bat}
+    \item \textbf{MATLAB 批量分析:} \quad \texttt{batch\_process}
+    \item \textbf{Python 可视化:} \quad \texttt{cd output \&\& python visualize\_results.py}
+\end{enumerate}
+\vspace{4pt}
+\end{minipage}}
+\end{center}
+
+\end{document}
