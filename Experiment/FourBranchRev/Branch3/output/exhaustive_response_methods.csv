@@ -1,0 +1,2 @@
+MethodIndex,MethodId,Branch,Estimator,StateCount,UniquePhaseCount,ObservationIndices,PhaseSetDeg,PowerDesignRank,PowerDesignCondition,Recoverable,Canonical,FailureReason
+3,B3_HADAMARD,Branch3,Hadamard,NaN,NaN,,,NaN,NaN,1,0,

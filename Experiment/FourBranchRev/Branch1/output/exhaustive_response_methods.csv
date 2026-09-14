@@ -1,0 +1,2 @@
+MethodIndex,MethodId,Branch,Estimator,StateCount,UniquePhaseCount,ObservationIndices,PhaseSetDeg,PowerDesignRank,PowerDesignCondition,Recoverable,Canonical,FailureReason
+1,B1_DFT8,Branch1,ComplexDFT,8,8,1/2/3/4/5/6/7/8,0/45/90/135/180/225/270/315,NaN,NaN,1,1,

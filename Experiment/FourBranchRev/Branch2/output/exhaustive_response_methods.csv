@@ -1,0 +1,2 @@
+MethodIndex,MethodId,Branch,Estimator,StateCount,UniquePhaseCount,ObservationIndices,PhaseSetDeg,PowerDesignRank,PowerDesignCondition,Recoverable,Canonical,FailureReason
+2,B2_ONOFF,Branch2,OnOff,NaN,NaN,,,NaN,NaN,1,0,
