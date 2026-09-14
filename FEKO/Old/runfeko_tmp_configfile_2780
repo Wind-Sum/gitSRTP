@@ -1,1 +1,0 @@
- -n 16 -localonly -localhost Estival -envall -mapall "D:\Software\FEKO2022\FEKO\bin\feko_mkl.csv.impi.exe" "8x8" "--run-from-gui"
