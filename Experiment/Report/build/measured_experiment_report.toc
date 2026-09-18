@@ -1,0 +1,26 @@
+\contentsline {section}{\numberline {1}实验目的与报告范围}{1}{section.1}%
+\contentsline {section}{\numberline {2}实验系统与测量场景}{1}{section.2}%
+\contentsline {subsection}{\numberline {2.1}硬件与扫频设置}{1}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}多站几何与数据范围}{2}{subsection.2.2}%
+\contentsline {section}{\numberline {3}四分支复响应恢复方法}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Branch 1：复数 DFT 参考}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Branch 2：On/Off 直接测量}{3}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Branch 3：Hadamard 正交编码}{3}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Branch 4：严格功率 REV}{4}{subsection.3.4}%
+\contentsline {section}{\numberline {4}比较指标、AOA 与定位方法}{4}{section.4}%
+\contentsline {subsection}{\numberline {4.1}复响应一致性}{4}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}宽带 AOA}{4}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}多站几何定位}{5}{subsection.4.3}%
+\contentsline {section}{\numberline {5}标准四分支结果}{5}{section.5}%
+\contentsline {subsection}{\numberline {5.1}复响应一致性}{5}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}单站 AOA}{6}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}四站定位}{6}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Branch 4 全相移子集穷举}{8}{section.6}%
+\contentsline {subsection}{\numberline {6.1}穷举空间与完整性}{8}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}相移观测数对响应与定位的影响}{8}{subsection.6.2}%
+\contentsline {section}{\numberline {7}误差分析与讨论}{10}{section.7}%
+\contentsline {subsection}{\numberline {7.1}数据能够直接支持的判断}{10}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}可能的共同误差来源}{10}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}结果边界}{11}{subsection.7.3}%
+\contentsline {section}{\numberline {8}结论}{11}{section.8}%
+\contentsline {section}{\numberline {9}复现入口与数据文件}{12}{section.9}%

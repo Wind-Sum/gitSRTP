@@ -34,8 +34,10 @@ end
 
 s=results.stateSweepCombinations;
 if ~isempty(s)
-    fprintf(fid,'\n## Branch1/Branch4 相移观测状态数对四站定位的影响\n\n');
-    fprintf(fid,'| 分支 | 状态数 | 唯一相位 | 估计坐标 x/y/z (m) | 误差 | 射线 RMS |\n');
+    fprintf(fid,'\n## Branch1/Branch4 每阵位相移观测状态数对四阵位联合定位的影响\n\n');
+    fprintf(fid,['下表每一行始终使用Location1--4全部四个阵位联合定位。' ...
+        '“状态数”是每个阵位各自使用的相移观测数，并非参与定位的阵位数。\n\n']);
+    fprintf(fid,'| 分支 | 每阵位相移观测状态数 | 每阵位唯一相位数 | 四阵位联合估计坐标 x/y/z (m) | 真值误差 | 射线 RMS |\n');
     fprintf(fid,'|---|---:|---:|---:|---:|---:|\n');
     for branchName={'Branch1','Branch4'}
         for count=3:9

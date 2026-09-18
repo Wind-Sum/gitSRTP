@@ -13,7 +13,12 @@ fprintf(fid,'频率维统一使用%d个均匀抽取频点。\n\n',numel(results.
 fprintf(fid,'得到数值定位%d条，秩不足连带产生的无效定位%d条；数值定位中有%d条未通过全部射线向前检查。\n\n', ...
     nnz(l.LocalizationValid),nnz(~l.LocalizationValid), ...
     nnz(l.LocalizationValid&~l.AllRaysForward));
-fprintf(fid,'| 分支 | 状态数 | 方法数 | 可恢复 | 完成全部11定位 | 有效率 | 对B1相干 | 相位RMSE | 四站误差中位数 | 四站误差范围 |\n');
+fprintf(fid,['“状态数”在下表中特指Location1--4每个阵位各自采用的REV相移观测数，不是参与定位的阵位数。' ...
+    '每个相移子集都分别产生4个单站AOA，并固定运行6个两阵位、4个三阵位和1个四阵位定位。' ...
+    '四阵位误差统计始终使用Location1--4全部四个阵位。\n\n']);
+fprintf(fid,['| 分支 | 每阵位REV相移观测数 | 相移子集数 | 可恢复子集数 | 完成全部11种定位的子集数 | ' ...
+    '有效率中位数（跨子集） | 对B1相干中位数（跨子集） | 相位RMSE中位数（跨子集） | ' ...
+    '四阵位联合定位误差中位数（跨子集） | 四阵位联合定位误差范围（跨子集） |\n']);
 fprintf(fid,'|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n');
 for index=1:height(g)
     fprintf(fid,'| %s | %s | %d | %d | %d | %.2f%% | %.3f | %.2f° | %.3f m | %.3f--%.3f m |\n', ...
@@ -27,7 +32,7 @@ end
 validFour=m(strcmp(m.Branch,'Branch4')&m.FourStationValidCount==1,:);
 [~,responseOrder]=sort(validFour.Branch1Coherence,'descend');
 fprintf(fid,'\n## Branch4与Branch1复响应最一致的10个观测子集\n\n');
-fprintf(fid,'| 方法 | 状态数 | 观测编号 | 相位集合 | 对B1相干 | 相位RMSE | 四站误差 |\n');
+fprintf(fid,'| 方法 | 每阵位REV相移观测数 | 观测编号 | 每阵位使用的相位集合 | 对B1相干 | 相位RMSE | 四阵位联合定位误差 |\n');
 fprintf(fid,'|---|---:|---|---|---:|---:|---:|\n');
 for rankIndex=1:min(10,numel(responseOrder))
     item=validFour(responseOrder(rankIndex),:);
@@ -41,7 +46,7 @@ end
 fprintf(fid,'\n## 事后真值误差最小的10个Branch4观测子集\n\n');
 fprintf(fid,['下表使用已知真实坐标进行事后排序，只用于暴露误差分布和共同系统偏差，' ...
     '存在选择偏差，不能作为实际未知信源时的相位子集选择规则。\n\n']);
-fprintf(fid,'| 方法 | 状态数 | 观测编号 | 相位集合 | 四站误差 | 对B1相干 | 相位RMSE |\n');
+fprintf(fid,'| 方法 | 每阵位REV相移观测数 | 观测编号 | 每阵位使用的相位集合 | 四阵位联合定位误差 | 对B1相干 | 相位RMSE |\n');
 fprintf(fid,'|---|---:|---|---|---:|---:|---:|\n');
 for rankIndex=1:min(10,numel(bestOrder))
     item=validFour(bestOrder(rankIndex),:);

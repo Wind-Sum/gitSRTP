@@ -28,10 +28,12 @@ for k=1:size(pairs,1)
         median(t.MedianComplexNmseDb(mask),'omitnan'),median(t.MedianMagnitudeNrmse(mask),'omitnan'));
 end
 
-fprintf(fid,'\n## Branch1/Branch4 相移观测状态递增（四站中位数）\n\n');
+fprintf(fid,'\n## Branch1/Branch4 每阵位相移观测状态递增（四个阵位的中位数）\n\n');
 fprintf(fid,['Branch1的3--7状态采用复谐波最小二乘，8状态为正式复数DFT基准；' ...
     '9状态表示8个唯一相位加一次360°闭合重复，不是9个唯一相位。\n\n']);
-fprintf(fid,'| 方法 | 状态数 | 唯一相位 | 有效率 | 对 Branch1 相干 | 对 Branch1 相位 RMSE | 留出状态拟合 NMSE |\n');
+fprintf(fid,['下表的状态数是Location1--4中每个阵位各自使用的相移观测数；' ...
+    '指标先在各阵位计算，再对四个阵位取中位数。它不表示参与定位的阵位数。\n\n']);
+fprintf(fid,'| 方法 | 每阵位相移观测状态数 | 每阵位唯一相位数 | 有效率 | 对 Branch1 相干 | 对 Branch1 相位 RMSE | 留出状态拟合 NMSE |\n');
 fprintf(fid,'|---|---:|---:|---:|---:|---:|---:|\n');
 s=bundle.sweepMetrics;
 for branchName={'Branch1','Branch4'}

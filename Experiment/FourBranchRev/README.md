@@ -40,4 +40,4 @@ Branch1和Branch4的正式输出均使用前8个唯一相位。第九次观测36
 - `output/exhaustive_response_agreement.csv`：每种方法在四个位置对四个参考的响应指标；
 - `output/exhaustive_response_summary.csv`：逐方法汇总；
 - `output/exhaustive_response_cache.mat`：后续5159条定位使用的统一频点响应缓存；
-- `output/EXHAUSTIVE_RESPONSE_REPORT.md`：按观测数汇总。
+- `output/EXHAUSTIVE_RESPONSE_REPORT.md`：按每个阵位使用的REV相移观测数汇总；该数量与后续参与定位的阵位数无关。
