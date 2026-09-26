@@ -1,7 +1,10 @@
 function doa = estimate_broadband_doa(h, validMask, frequencyHz, ...
-        frequencyIndices, elementPositions, cfg)
-%ESTIMATE_BROADBAND_DOA 宽带非相干 Bartlett 方向余弦搜索。
-% 每个频点允许独立的未知公共复增益，再对归一化空间匹配分数求平均。
+        frequencyIndices, elementPositions, cfg, algorithm)
+%ESTIMATE_BROADBAND_DOA 宽带 Bartlett 或单快拍 MUSIC 方向余弦搜索。
+% 每个频点各有一个复响应向量；MUSIC 使用该向量的秩一投影噪声子空间。
+
+if nargin < 7, algorithm = 'Bartlett'; end
+algorithm = validatestring(algorithm, {'Bartlett','Music'});
 
 [uxGrid, uzGrid] = meshgrid(-1:cfg.CoarseDirectionStep:1, ...
     -1:cfg.CoarseDirectionStep:1);
@@ -9,7 +12,7 @@ inside = uxGrid.^2 + uzGrid.^2 <= 1;
 coarseU = [uxGrid(inside), sqrt(max(0, 1 - uxGrid(inside).^2 - ...
     uzGrid(inside).^2)), uzGrid(inside)];
 [coarseScores, ~, ~] = score_directions(coarseU, h, ...
-    validMask, frequencyHz, frequencyIndices, elementPositions, cfg);
+    validMask, frequencyHz, frequencyIndices, elementPositions, cfg, algorithm);
 [bestCoarse, bestIndex] = max(coarseScores);
 peak = coarseU(bestIndex, :);
 
@@ -21,7 +24,7 @@ insideFine = uxFine.^2 + uzFine.^2 <= 1;
 fineU = [uxFine(insideFine), sqrt(max(0, 1 - uxFine(insideFine).^2 - ...
     uzFine(insideFine).^2)), uzFine(insideFine)];
 [fineScores, usedCount, validFraction] = score_directions(fineU, h, ...
-    validMask, frequencyHz, frequencyIndices, elementPositions, cfg);
+    validMask, frequencyHz, frequencyIndices, elementPositions, cfg, algorithm);
 [bestScore, bestIndex] = max(fineScores);
 bestU = fineU(bestIndex, :);
 
@@ -41,11 +44,12 @@ doa.coarsePeakScore = bestCoarse;
 doa.peakToSecondRatio = bestScore / max(secondScore, realmin);
 doa.usedFrequencyCount = usedCount;
 doa.meanValidElementFraction = validFraction;
+doa.algorithm = algorithm;
 end
 
 function [scores, usedFrequencyCount, meanValidFraction] = score_directions( ...
         directions, h, validMask, frequencyHz, frequencyIndices, ...
-        elementPositions, cfg)
+        elementPositions, cfg, algorithm)
 c = 299792458;
 scores = zeros(size(directions, 1), 1);
 usedFrequencyCount = 0;
@@ -65,8 +69,17 @@ for frequencyIndex = frequencyIndices(:).'
     waveNumber = 2 * pi * frequencyHz(frequencyIndex) / c;
     steering = exp(1j * waveNumber * ...
         (elementPositions(valid, :) * directions.'));
-    scores = scores + (abs(x' * steering).^2).' / ...
+    normalizedPower = (abs(x' * steering).^2).' / ...
         max(nnz(valid) * sum(abs(x).^2), realmin);
+    if strcmp(algorithm, 'Music')
+        % R=x*x^H 的噪声投影为 I-x*x^H/(x^H*x)。
+        % P_MUSIC=1/(a^H*P_noise*a)=1/[N*(1-normalizedPower)]。
+        % 这是单次复响应的形式化 MUSIC，不能据此声称多快拍性能。
+        scores = scores + 1 ./ max(nnz(valid) * ...
+            (1 - min(normalizedPower, 1)), 1e-8);
+    else
+        scores = scores + normalizedPower;
+    end
     usedFrequencyCount = usedFrequencyCount + 1;
     validFractions(end+1) = nnz(valid) / size(h, 1); %#ok<AGROW>
 end

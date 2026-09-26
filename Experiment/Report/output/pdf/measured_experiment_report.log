@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.6.23)  26 SEP 2026 16:10
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.6.23)  26 SEP 2026 15:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**build/measured_experiment_report.tex
-(./build/measured_experiment_report.tex
+**measured_experiment_report.tex
+(./measured_experiment_report.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
 (d:/Software/Texlive/texlive/2025/texmf-dist/tex/latex/ctex/ctexart.cls
@@ -666,7 +666,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 Package hyperref Info: Option `colorlinks' set `true' on input line 20.
 Package translations Info: No language package found. I am going to use `englis
 h' as default language. on input line 45.
- (build/measured_experiment_report.aux)
+ (output/pdf/measured_experiment_report.aux)
 \openout1 = `measured_experiment_report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
@@ -793,8 +793,8 @@ nslations-basic-dictionary')
 Package translations Info: loading dictionary `translations-basic-dictionary' f
 or `english'. on input line 45.
 Package hyperref Info: Link coloring ON on input line 45.
- (build/measured_experiment_report.out)
-(build/measured_experiment_report.out)
+ (output/pdf/measured_experiment_report.out)
+(output/pdf/measured_experiment_report.out)
 \@outlinefile=\write3
 \openout3 = `measured_experiment_report.out'.
 
@@ -813,7 +813,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 [1
 
-] (build/measured_experiment_report.toc
+] (output/pdf/measured_experiment_report.toc
 
 [1])
 \tf@toc=\write4
@@ -832,11 +832,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [3]
 
 [4]
-
-[5]
 File: figures/response_agreement_matrix.png Graphic file (type bmp)
 <figures/response_agreement_matrix.png>
 
+
+[5]
 
 [6]
 File: figures/four_branch_localization.png Graphic file (type bmp)
@@ -844,28 +844,22 @@ File: figures/four_branch_localization.png Graphic file (type bmp)
 
 
 [7]
-
-[8]
-File: figures/dual_algorithm_four_station.png Graphic file (type bmp)
-<figures/dual_algorithm_four_station.png>
-
-
-[9]
 File: figures/phase_observation_summary.png Graphic file (type bmp)
 <figures/phase_observation_summary.png>
+
+
+[8]
 File: ../Localization/output/exhaustive_comparison.png Graphic file (type bmp)
 <../Localization/output/exhaustive_comparison.png>
 
+
+[9]
 
 [10]
 
 [11]
 
 [12]
-
-[13]
-
-[14]
 
 Package fontspec Info: 
 (fontspec)             Script 'CJK' not explicitly supported within font
@@ -888,25 +882,24 @@ t;"
 
 
 
-[15
+[13
 
-] (build/measured_experiment_report.aux)
+] (output/pdf/measured_experiment_report.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/07/14>
  ***********
 Package rerunfilecheck Info: File `measured_experiment_report.out' has not chan
 ged.
-(rerunfilecheck)             Checksum: DB838D14C31663E1D2A7F38599CC625B;3791.
+(rerunfilecheck)             Checksum: B4410648A2481BE8EB0D860CEA561BAB;3466.
  ) 
 Here is how much of TeX's memory you used:
- 22621 strings out of 473832
- 533710 string characters out of 5725355
- 898194 words of memory out of 5000000
- 45406 multiletter control sequences out of 15000+600000
+ 22607 strings out of 473832
+ 533274 string characters out of 5725355
+ 898586 words of memory out of 5000000
+ 45393 multiletter control sequences out of 15000+600000
  567312 words of font info for 98 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 93i,12n,112p,1218b,1022s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,12n,112p,1212b,986s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on build/measured_experiment_report.xdv (18 pages, 220832 bytes)
-.
+Output written on output/pdf/measured_experiment_report.pdf (16 pages).

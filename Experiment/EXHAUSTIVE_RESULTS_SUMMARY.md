@@ -78,7 +78,9 @@ q = (aᴴb)/(aᴴa)
 
 ## 5. 2/3/4站定位及射线RMS
 
-每种复响应方法先产生4个单站AOA方向，再运行：
+每种复响应方法先在4个阵位分别产生1个DOA方向，再运行：
+
+单副相控阵在一个阵位仅能估计入射方向（DOA），不能单独定位；至少两个阵位的DOA结合已知阵位坐标，才构成几何定位。
 
 - 6个两站组合：`L1-L2`、`L1-L3`、`L1-L4`、`L2-L3`、`L2-L4`、`L3-L4`；
 - 4个三站组合：`L1-L2-L3`、`L1-L2-L4`、`L1-L3-L4`、`L2-L3-L4`；
@@ -92,7 +94,7 @@ q = (aᴴb)/(aᴴa)
 
 | 项目 | 数量 |
 |---|---:|
-| 单站DOA记录 | 1876 |
+| 单阵位DOA记录 | 1876 |
 | 总定位链 | 5159 |
 | 得到数值定位 | 5082 |
 | 因7个秩不足响应方法而无效 | 77 |
@@ -103,7 +105,7 @@ q = (aᴴb)/(aᴴa)
 
 全子集21频点口径下：
 
-表中“四阵位定位”始终同时使用 Location1--4。以 3 相移一行为例，77 个可恢复的三相移子集分别在四个阵位恢复响应、计算4个AOA并进行四阵位联合定位，表内误差是这77个四阵位定位结果的跨子集统计。
+表中“四阵位定位”始终同时使用 Location1--4。以 3 相移一行为例，77 个可恢复的三相移子集分别在四个阵位恢复响应、计算4个DOA并进行四阵位联合定位，表内误差是这77个四阵位定位结果的跨子集统计。
 
 | 分支 | 每阵位REV相移观测数 | 相移子集数 | 四阵位联合定位误差中位数（跨子集） | 四阵位联合定位误差范围（跨子集） |
 |---|---:|---:|---:|---:|
@@ -133,7 +135,30 @@ q = (aᴴb)/(aᴴa)
 
 在项目结论中，应将上述现象表述为“算法路径已完成实测可行性和多分支一致性验证，绝对定位结果受到现有实验系统不确定性限制”，而不是将其列为必须补做的新一轮硬件实验。四分支相互印证及469×11穷举已经构成当前实验条件下的完整验证闭环。
 
-## 7. 复现入口与结果文件
+## 7. MUSIC与Bartlett的同数据全组合对照（2026-09-26补充）
+
+原先5159条实测穷举定位链使用的是宽带非相干Bartlett，即常规波束形成（CBF）。现已用同一份469种复响应、相同的21个频点、阵列几何、方向网格和定位器补算MUSIC。两种DOA算法各有1876条单阵位DOA和5159条定位链；各有5082条数值有效定位，另有7个秩不足的三相移子集分别导致77条无效定位。
+
+本次MUSIC按每个阵位、每个频点的单个复响应向量`x`形成`R=xxᴴ`，以秩一信号方向的正交补构造噪声子空间。频点内MUSIC与Bartlett的方向谱单调对应；频点之间非相干平均时，由于MUSIC谱采用倒数形式，结果可能产生小幅方向差异。这不是独立多快拍测量，不能据此宣称MUSIC在一般条件下优于CBF，也不能把相移状态或不同频点称为同频独立快拍。
+
+| 每阵位REV相移观测数 | 可配对的四阵位方法 | Bartlett四阵位误差中位数 | MUSIC四阵位误差中位数 | 同一子集误差差值中位数 |
+|---:|---:|---:|---:|---:|
+| Branch1正式方法 | 1 | 1.167 m | 1.127 m | -0.040 m |
+| Branch2正式方法 | 1 | 1.183 m | 1.125 m | -0.058 m |
+| Branch3正式方法 | 1 | 1.171 m | 1.135 m | -0.036 m |
+| Branch4：3 | 77 | 1.123 m | 1.097 m | -0.031 m |
+| Branch4：4 | 126 | 1.157 m | 1.115 m | -0.037 m |
+| Branch4：5 | 126 | 1.162 m | 1.118 m | -0.042 m |
+| Branch4：6 | 84 | 1.163 m | 1.117 m | -0.045 m |
+| Branch4：7 | 36 | 1.165 m | 1.118 m | -0.048 m |
+| Branch4：8 | 9 | 1.166 m | 1.116 m | -0.050 m |
+| Branch4：9 | 1 | 1.168 m | 1.116 m | -0.052 m |
+
+上表的差值为MUSIC误差减Bartlett误差。数值有效但射线并非全部向前的定位，Bartlett有84条，MUSIC有109条；少量低观测数子集的两/三阵位交汇还出现几十米级异常值。因此不能只看四阵位误差中位数就给出算法优劣判断。两种谱的正式对照是处理流程覆盖和现有数据条件下的敏感性分析，仍未消除四分支共有的约1.1 m绝对偏差。
+
+逐AOA、逐定位组合和分组结果分别见`Localization/output/music_vs_bartlett_doa.csv`、`music_vs_bartlett_pipeline.csv`、`music_vs_bartlett_group_summary.csv`；完整说明见`Localization/output/MUSIC_BARTLETT_COMPARISON_REPORT.md`。
+
+## 8. 复现入口与结果文件
 
 标准四分支闭环：
 
@@ -156,10 +181,13 @@ results = run_exhaustive_comparison;
 - `FourBranchRev/output/exhaustive_response_agreement.csv`：逐位置、逐参考分支一致性；
 - `FourBranchRev/output/exhaustive_response_summary.csv`：逐方法响应汇总；
 - `Localization/output/EXHAUSTIVE_COMPARISON_REPORT.md`：总体结果和代表性子集；
-- `Localization/output/exhaustive_doa.csv`：1876个单站DOA；
+- `Localization/output/exhaustive_doa.csv`：1876个单阵位DOA；
 - `Localization/output/exhaustive_full_pipeline.csv`：5159条完整定位链；
 - `Localization/output/exhaustive_method_summary.csv`：469种方法的响应与定位合并摘要；
 - `Localization/output/exhaustive_group_summary.csv`：按分支和观测数汇总；
 - `Localization/output/exhaustive_comparison.png`：总体可视化。
+- `Localization/output/MUSIC_BARTLETT_COMPARISON_REPORT.md`：同数据MUSIC/CBF对照及单快拍解释边界；
+- `Localization/output/music_vs_bartlett_pipeline.csv`：两种DOA算法各5159条链的逐行配对；
+- `Localization/output/music_vs_bartlett_doa.csv`：两种DOA算法各1876条单阵位DOA的逐行配对。
 
 各分支目录中的`output/`另保存本分支对应的穷举切片，Branch1--3各11条定位，Branch4保存466种响应方法和5126条定位链。

@@ -18,7 +18,7 @@ loaded=load(cacheFile,'cache'); cache=loaded.cache; cfg=cache.config;
 cfg.CoarseDirectionStep=0.025; cfg.FineDirectionStep=0.0025;
 cfg.MinValidElements=12; cfg.AmplitudeExponent=1;
 methodCount=height(cache.methodTable);
-fprintf('对%d种复响应方法计算4个单站DOA和11种定位。\n',methodCount);
+fprintf('对%d种复响应方法计算4个单阵位DOA和11种定位。\n',methodCount);
 
 doaCells=cell(methodCount,1); localizationCells=cell(methodCount,1);
 useParallel=logical(options.UseParallel)&&license('test','Distrib_Computing_Toolbox');

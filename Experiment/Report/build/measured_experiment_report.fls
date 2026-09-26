@@ -2,7 +2,7 @@ PWD D:/UniFile/Grade2/SRTP/Experiment/Report
 INPUT d:/Software/Texlive/texlive/2025/texmf.cnf
 INPUT d:/Software/Texlive/texlive/2025/texmf-dist/web2c/texmf.cnf
 INPUT d:/Software/Texlive/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt
-INPUT measured_experiment_report.tex
+INPUT build/measured_experiment_report.tex
 OUTPUT build/measured_experiment_report.log
 INPUT d:/Software/Texlive/texlive/2025/texmf-dist/tex/latex/ctex/ctexart.cls
 INPUT d:/Software/Texlive/texlive/2025/texmf-dist/tex/latex/ctex/ctexart.cls
@@ -242,6 +242,8 @@ INPUT ./figures/response_agreement_matrix.png
 INPUT ./figures/response_agreement_matrix.png
 INPUT ./figures/four_branch_localization.png
 INPUT ./figures/four_branch_localization.png
+INPUT ./figures/dual_algorithm_four_station.png
+INPUT ./figures/dual_algorithm_four_station.png
 INPUT ./figures/phase_observation_summary.png
 INPUT ./figures/phase_observation_summary.png
 INPUT ../Localization/output/exhaustive_comparison.png

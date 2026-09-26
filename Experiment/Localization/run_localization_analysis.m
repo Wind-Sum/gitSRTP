@@ -24,7 +24,7 @@ standardFrequencyIndices=select_frequency_indices(frequencyHz,cfg.frequencyRange
 sweepFrequencyIndices=select_frequency_indices(frequencyHz,cfg.frequencyRangeHz,options.SweepFrequencyCount);
 selectedBranches=unique(options.Branches(:).','stable');
 
-fprintf('计算四分支单站 DOA...\n');
+fprintf('计算四分支单阵位 DOA...\n');
 doaRows=cell(numel(selectedBranches)*4,13); row=0;
 directions=nan(4,3,4);
 for branchIndex=selectedBranches

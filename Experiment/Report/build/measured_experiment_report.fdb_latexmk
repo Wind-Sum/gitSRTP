@@ -1,14 +1,15 @@
 # Fdb version 4
-["xdvipdfmx"] 1789723149.59205 "build/measured_experiment_report.xdv" "build/measured_experiment_report.pdf" "build/measured_experiment_report" 1789723152.50856 0
-  "build/measured_experiment_report.xdv" 1789723149 171772 45a9104fec1ceda08f5a43338123fa1c "xelatex"
+["xdvipdfmx"] 1790410236.98639 "build/measured_experiment_report.xdv" "build/measured_experiment_report.pdf" "build/measured_experiment_report" 1790410240.19442 0
+  "build/measured_experiment_report.xdv" 1790410236 220832 4847e3017fa2760111b01a0a7a13fed6 "xelatex"
   (generated)
   "build/measured_experiment_report.pdf"
   (rewritten before read)
-["xelatex"] 1789723146.7492 "measured_experiment_report.tex" "build/measured_experiment_report.xdv" "measured_experiment_report" 1789723152.50187 0
-  "../Localization/output/exhaustive_comparison.png" 1789008947 211991 ec482b63e0bb94ad705003ce2a598bbe ""
-  "build/measured_experiment_report.aux" 1789723149 6961 251c77b8d8c8a09f483158e545ae6a23 "xelatex"
-  "build/measured_experiment_report.out" 1789723149 3229 f4c76254f6c37beade1b681d6c9252a6 "xelatex"
-  "build/measured_experiment_report.toc" 1789723149 2244 6af93d147c9727b4d5768e9fa4c8407a "xelatex"
+["xelatex"] 1790410234.00122 "build/measured_experiment_report.tex" "build/measured_experiment_report.xdv" "measured_experiment_report" 1790410240.18686 0
+  "../Localization/output/exhaustive_comparison.png" 1790409438 236504 96de82ed4daf3948dea0ace9e55c85b7 ""
+  "build/measured_experiment_report.aux" 1790410236 8655 d2fcbf05a3bf3dd1467f7bbac8c38a30 "xelatex"
+  "build/measured_experiment_report.out" 1790410236 3791 db838d14c31663e1d2a7f38599cc625b "xelatex"
+  "build/measured_experiment_report.tex" 1790410224 30889 0e0ec797f662045e7254b7d76187eaa7 ""
+  "build/measured_experiment_report.toc" 1790410236 2461 7120674c5c4998ddd7d35ebdb957bf2d "xelatex"
   "c:/Users/13876/texmf/tex/latex/ctex/fontset/ctex-fontset-windows.def" 1781232378 3668 649e78fb0a42ed04eb6f9b779fa98ab1 ""
   "d:/Software/Texlive/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1750653894 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "d:/Software/Texlive/texlive/2025/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1750656034 1528 7e12f4c0fcf5a072cebdcfbfc610f54c ""
@@ -123,10 +124,10 @@
   "d:/Software/Texlive/texlive/2025/texmf-dist/web2c/texmf.cnf" 1750652926 42148 61becc7c670cd061bb319c643c27fdd4 ""
   "d:/Software/Texlive/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt" 1750656251 5640255 799089e7f5028d6e9126169b79c9dc36 ""
   "d:/Software/Texlive/texlive/2025/texmf.cnf" 1750656058 713 e69b156964470283e0530f5060668171 ""
-  "figures/four_branch_localization.png" 1789722102 294035 0a84666ee72954d2ff2885686a8709c5 ""
-  "figures/phase_observation_summary.png" 1789722105 245648 288bf6995c0277c5b32a749c77c20b8b ""
-  "figures/response_agreement_matrix.png" 1789722104 126053 f8404ba7dbdcd39e025c0c4ed3ccfc59 ""
-  "measured_experiment_report.tex" 1789723110 23610 f84ccc69044129dba8923fda4ff60270 ""
+  "figures/dual_algorithm_four_station.png" 1790409687 113132 69bf35540a18cd7134d5e8deafe944c7 ""
+  "figures/four_branch_localization.png" 1790409684 323613 1b3a268e995dd719546ecb0554f803fe ""
+  "figures/phase_observation_summary.png" 1790409687 259301 f100b686d387b63a09270f1d9f9b5de9 ""
+  "figures/response_agreement_matrix.png" 1790409686 142731 f9f14358a3288a5842c90a790284c900 ""
   (generated)
   "build/measured_experiment_report.aux"
   "build/measured_experiment_report.log"
