@@ -1,0 +1,410 @@
+% !TEX program = xelatex
+\documentclass[UTF8,a4paper,12pt]{ctexart}
+
+\usepackage[left=2.6cm,right=2.6cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,longtable,array,tabularx}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc}
+\usepackage[hidelinks]{hyperref}
+
+\setstretch{1.35}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{2em}
+\setlist{nosep,leftmargin=2.2em}
+\ctexset{
+  section={format=\large\bfseries},
+  subsection={format=\normalsize\bfseries},
+  subsubsection={format=\normalsize\bfseries}
+}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  \vspace*{2.2cm}
+  {\zihao{2}\bfseries 分布式相控阵使能的物联网设备高精度定位\par}
+  \vspace{1.1cm}
+  {\zihao{-1}\bfseries 研究与设计方案\par}
+  \vfill
+  \renewcommand{\arraystretch}{1.6}
+  \begin{tabular}{rl}
+    项目编号：& 202661066\\
+    项目类型：& 校级 SRTP 创新训练项目\\
+    项目负责人：& 王越\\
+    项目成员：& 王越、杨天宇、杨沛峰\\
+    指导教师：& 范伟\\
+  \end{tabular}
+  \vfill
+  {\zihao{4}东南大学\par}
+  \vspace{0.5cm}
+  {\zihao{4}2026年\par}
+\end{titlepage}
+
+\pagenumbering{Roman}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+\begin{abstract}
+本项目面向室内物联网终端定位，研究以多个分布式相控阵阵位为基础、以幅度或功率观测代替逐通道直接相位测量的定位方案。系统通过受控改变阵元相位，利用旋转电场矢量法（REV）从阵列合成功率变化中恢复阵元相对复响应；随后使用多重信号分类（MUSIC）和常规波束形成估计每个阵位的信号到达方向，并结合阵位坐标完成多阵位联合定位。研究采用分层验证路线：MATLAB用于验证算法模型和参数影响，FEKO用于引入天线、材料和电磁传播因素，实物实验用于检验测量、复响应恢复、测向和定位的完整链路。本文给出系统组成、算法模型以及各验证阶段的实际设计，不包含后续实验结果。
+
+\noindent\textbf{关键词：}分布式相控阵；功率测量；REV；DOA；AOA定位；MUSIC；常规波束形成
+\end{abstract}
+
+\section{项目背景与研究目标}
+
+\subsection{研究背景}
+
+全球导航卫星系统在建筑内部容易受到墙体遮挡、信号衰减和多径传播影响，难以持续提供可靠的室内位置服务。仓储物流、智能制造、医疗看护和机器人导航等物联网场景同时关注定位精度、设备成本、终端功耗和部署复杂度。基于接收信号强度的方案成本较低，但容易受到环境变化影响；基于到达时间的方案通常需要较宽带宽或较高的时钟同步精度；超宽带方案还需要专用收发硬件。
+
+阵列到达方向估计利用不同阵元接收信号的相对幅相关系获得空间方向，不要求待定位终端与接收站之间具有纳秒级时间同步，适合由窄带信号提供方向约束。但大规模相控阵若为每个阵元配置独立的高精度相位测量链路，将增加硬件成本和通道校准难度。REV方法通过控制阵元相位并观测阵列合成场幅度或功率，为恢复阵元相对复响应提供了另一条路径。
+
+\subsection{关键问题}
+
+项目围绕以下问题展开：
+
+\begin{enumerate}
+  \item 如何根据多个受控相移状态下的阵列合成功率，恢复各阵元相对于公共参考场的复响应；
+  \item 如何由恢复的阵元复响应获得每个阵位的方位角和俯仰角，形成可靠的空间方向约束；
+  \item 如何将多个已知阵位的方向约束转换到统一坐标系，并联合求解信源坐标；
+  \item 如何区分复响应恢复、方向估计、定位几何和传播环境引入的误差；
+  \item 如何通过算法仿真、电磁仿真和实物测量逐级检验方案。
+\end{enumerate}
+
+\subsection{研究目标}
+
+项目目标包括建立功率测量到空间坐标输出的完整数学模型，实现可复用的REV、MUSIC、常规波束形成及多阵位定位程序，分析多径、阵列布局和几何条件等因素的影响，并形成MATLAB、FEKO和实物实验相互衔接的验证材料。方案以定位链路的可实现性和可复现性为主要设计要求，不在本方案中预设定位误差目标值。
+
+\section{总体研究思路}
+
+\subsection{系统组成}
+
+系统由物联网信源、相控阵接收阵位、阵列控制与测量设备、REV复响应恢复模块、阵位级DOA估计模块和多阵位定位模块构成。一个阵位的一副阵列只能提供信号到达方向；至少两个具有已知位置和姿态的阵位提供不同方向约束后，才能联合估计信源位置。
+
+\subsection{总体技术路线}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  node distance=7mm,
+  >=Latex,
+  block/.style={draw=black!65,rounded corners=2pt,align=center,minimum width=10.6cm,minimum height=9mm,fill=blue!4,font=\small},
+  arrow/.style={->,thick,draw=black!70}
+]
+  \node[block] (tx) {物联网信源发送窄带信号};
+  \node[block,below=of tx] (array) {多个已知位置与姿态的相控阵阵位接收信号};
+  \node[block,below=of array] (power) {逐阵元施加受控相移，记录阵列合成幅度或功率};
+  \node[block,below=of power] (rev) {REV恢复阵元相对复响应};
+  \node[block,below=of rev] (doa) {各阵位分别使用MUSIC和常规波束形成估计DOA};
+  \node[block,below=of doa] (loc) {将方向转换到全局坐标系并进行多阵位联合定位};
+  \node[block,below=of loc] (out) {输出信源预测坐标和质量指标};
+  \draw[arrow] (tx)--(array);
+  \draw[arrow] (array)--(power);
+  \draw[arrow] (power)--(rev);
+  \draw[arrow] (rev)--(doa);
+  \draw[arrow] (doa)--(loc);
+  \draw[arrow] (loc)--(out);
+\end{tikzpicture}
+\caption{项目总体技术路线}
+\label{fig:route}
+\end{figure}
+
+各模块职责保持独立：REV负责由功率数据恢复阵元相对复响应；MUSIC和常规波束形成负责阵位级方向估计；多阵位几何求解负责由方向射线得到位置。分层设计便于分别检查恢复误差、测向误差和几何放大效应。
+
+\section{REV复响应恢复方案}
+
+\subsection{合成场功率模型}
+
+对阵列中的第$n$个阵元施加受控相移$\phi$。将该阵元未移相时的复响应记为$H_n$，其余阵元形成的背景复场记为$B_n$，则合成场和观测功率可以写为
+
+\begin{align}
+  Z_n(\phi) &= B_n+H_n e^{\mathrm{j}\phi},\\
+  P_n(\phi) &= \left|Z_n(\phi)\right|^2\\
+             &= |B_n|^2+|H_n|^2+2\operatorname{Re}\!\left\{B_n^*H_n e^{\mathrm{j}\phi}\right\}.
+\end{align}
+
+因此，$P_n(\phi)$由直流项、余弦项和正弦项组成。只要采用足够且线性独立的相移状态，就可以通过解析关系或最小二乘拟合获得一阶谐波系数，并恢复阵元相对于公共参考的幅度和相位信息。对全部阵元重复该过程即可形成阵列复响应向量。
+
+\subsection{三相位快速REV}
+
+MATLAB和FEKO阶段采用$0^\circ$、$90^\circ$和$180^\circ$三种受控相移。三个功率观测用于求解功率模型中的直流、余弦和正弦分量，再恢复阵元复响应。程序对根号项、弱分母和异常数值进行保护，以避免噪声或病态观测造成无效计算。该设计直接对应现有MATLAB函数和FEKO后处理程序。
+
+\subsection{实测多相位功率REV}
+
+实物测量采用$0^\circ$至$315^\circ$的八个唯一相位，并额外采集$360^\circ$重复点用于闭合检查。功率恢复使用实测总响应的模平方，按照功率谐波模型拟合相对复响应。$0^\circ$与$360^\circ$在名义相位上相同，重复观测用于检查测量漂移，不能作为两个独立相位提高模型秩。
+
+实测阶段还采集复数DFT、On/Off和Hadamard参考数据，用于检查功率REV恢复的阵元相对幅相。它们属于实物验证环节的对照测量，项目的核心输入仍是受控相移下的功率变化。具体分支定义和比较流程由实物实验记录单独说明。
+
+\subsection{主要影响因素}
+
+REV恢复可能受到测量噪声、相移误差、阵元增益差异、阵元互耦、背景场过弱、射频链路漂移及室内多径的共同影响。方案在各验证层保留中间复响应和质量诊断量，使后续方向误差能够与前端恢复质量对应分析。
+
+\section{方向估计方案}
+
+\subsection{阵列与方向模型}
+
+设阵列中第$n$个阵元相对于阵列参考点的位置为$\vect r_n$，频率为$f$，传播速度为$c$，单位到达方向为$\vect u$。远场导向矢量可写为
+
+\begin{equation}
+  \vect a_f(\vect u)=
+  \left[
+    e^{-\mathrm{j}\frac{2\pi f}{c}\vect r_1^{\mathrm T}\vect u},\ldots,
+    e^{-\mathrm{j}\frac{2\pi f}{c}\vect r_N^{\mathrm T}\vect u}
+  \right]^{\mathrm T}.
+\end{equation}
+
+平面阵列通过二维方向搜索获得方位角和俯仰角。两角共同定义一个阵位的空间DOA，并在全局坐标系中形成一条方向射线。
+
+\subsection{MUSIC测向}
+
+MATLAB阶段由多次REV快拍构造阵列观测矩阵和协方差矩阵，通过特征分解获得噪声子空间。MUSIC谱定义为
+
+\begin{equation}
+  S_{\mathrm{MUSIC}}(\vect u)=
+  \frac{1}{\vect a(\vect u)^{\mathrm H}\vect E_{\mathrm N}\vect E_{\mathrm N}^{\mathrm H}\vect a(\vect u)},
+\end{equation}
+
+二维谱峰对应估计的方位角和俯仰角。FEKO后处理采用由阵列复响应形成的空间谱完成三维位置搜索。实测数据在每个阵位和频点只有一个恢复后的阵列向量，采用秩一矩阵的正交补形成单快拍形式MUSIC谱，并在多个频点间进行非相干聚合。
+
+\subsection{常规波束形成测向}
+
+常规波束形成采用阵列观测与候选导向矢量之间的匹配功率：
+
+\begin{equation}
+  S_{\mathrm{BF}}(\vect u)=\left|\vect a(\vect u)^{\mathrm H}\vect x\right|^2.
+\end{equation}
+
+MATLAB、FEKO和实测处理中均保留常规波束形成路径，用相同的阵列几何和搜索范围与MUSIC进行比较。实测宽带处理中，对各频点的归一化谱进行非相干聚合。
+
+\section{多阵位联合定位方案}
+
+\subsection{方向射线构建}
+
+第$i$个阵位的全局坐标记为$\vect p_i$，由方位角、俯仰角及阵列姿态得到的全局单位方向记为$\vect u_i$，则该阵位提供的方向射线为
+
+\begin{equation}
+  \vect \ell_i(t_i)=\vect p_i+t_i\vect u_i,\qquad t_i\geq 0.
+\end{equation}
+
+局部方向转换到全局坐标系时，需要同时使用阵列中心位置和阵面姿态。阵位坐标与姿态记录误差会直接进入最终定位结果。
+
+\subsection{位置求解}
+
+两阵位情况下，使用两条空间方向线的最近点中点作为估计位置。三阵位及以上情况下，通过最小化估计点到所有方向线的垂距平方和求解：
+
+\begin{equation}
+  \widehat{\vect q}=
+  \arg\min_{\vect q}
+  \sum_i \left\|
+  \left(\vect I-\vect u_i\vect u_i^{\mathrm T}\right)
+  (\vect q-\vect p_i)
+  \right\|_2^2.
+\end{equation}
+
+实测定位器在此基础上使用Huber迭代加权，降低异常方向约束的影响，并检查$t_i$是否为正，避免把阵列后方的延长线交点视为有效定位。两条方向射线接近平行时，微小角度误差会被显著放大，因此阵位布局和射线夹角是方案中的重要几何因素。
+
+\section{MATLAB算法仿真设计}
+
+\subsection{仿真目的}
+
+MATLAB仿真用于检验从REV功率恢复、MUSIC和常规波束形成测向到双阵位交汇定位的完整算法链，并分析参数化多径和定位几何对结果的影响。该层使用可控的传播模型，侧重算法正确性、参数敏感性和空间误差分布。
+
+\subsection{场景和阵列设置}
+
+现有MATLAB程序使用的主要设置见表~\ref{tab:matlab-setting}。
+
+\begin{table}[htbp]
+\centering
+\caption{MATLAB算法仿真实际设置}
+\label{tab:matlab-setting}
+\begin{tabularx}{\textwidth}{p{3.2cm}Y}
+\toprule
+项目 & 设置\\
+\midrule
+室内空间 & $10\times8\times3$ m\\
+工作频率 & 2.4 GHz\\
+相控阵 & 两副$8\times8$均匀矩形阵列，每副64阵元\\
+阵元间距 & 半波长，即约6.25 cm\\
+阵位中心 & $[3,2,3]$ m与$[7,6,3]$ m，安装于天花板，法向朝下\\
+单点场景 & 信源位于$[3.5,4,2]$ m，使用50次快拍\\
+空间扫描 & 采用20次快拍，在多个水平面和多个反射系数条件下扫描\\
+传播模型 & 球面波直达路径与镜像源多径，反射强度由参数$\gamma$控制\\
+算法路径 & 三相位REV，随后分别进入MUSIC和常规波束形成，再进行双阵位定位\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{仿真步骤}
+
+\begin{enumerate}
+  \item 建立房间、信源和两副$8\times8$阵列的三维坐标；
+  \item 根据直达路径和镜像源路径计算各阵元复电场；
+  \item 对每个阵元构造三种受控相移下的阵列合成功率，并用REV恢复阵列复响应；
+  \item 由多次快拍分别计算MUSIC与常规波束形成方向谱；
+  \item 将两个阵位的DOA转换为空间方向射线并求解信源位置；
+  \item 对单点多径扫描和三维空间网格扫描分别保存方向、位置和误差统计。
+\end{enumerate}
+
+现有空间扫描程序覆盖5个信源高度、4个反射系数和$19\times15$个平面网格点，共形成5700个场景。设计中保留均值、中位数和最大值等统计量，以识别少量病态几何点对总体误差的影响。
+
+\clearpage
+\section{FEKO电磁仿真设计}
+
+\subsection{仿真目的}
+
+FEKO仿真通过端口S参数引入天线、材料、阵元耦合和室内传播因素；后处理从S参数构造REV功率，再由两个阵列的联合近场谱搜索信源位置。该实现与MATLAB中的阵位级DOA交汇分别记录。
+
+\subsection{模型设置}
+
+\begingroup
+\small
+\begin{table}[htbp]
+\centering
+\caption{FEKO电磁仿真实际设置}
+\begin{tabularx}{\textwidth}{p{3.2cm}Y}
+\toprule
+项目 & 设置\\
+\midrule
+房间模型 & $10\times8\times3$ m混凝土房间，墙体厚度0.3 m，相对介电常数5.5\\
+工作频率 & 2.4 GHz\\
+相控阵 & 两副$8\times8$阵列，共128个接收阵元，阵元间距6.25 cm\\
+阵位中心 & $[3,2,3]$ m与$[7,6,3]$ m\\
+天线与求解 & 电偶极子模型；天线部分采用矩量法，墙面传播采用UTD设置\\
+端口输出 & 1个信源端口与128个阵元端口，输出129端口S参数\\
+信源采样 & 采用$4\times5\times5$的余弦间距网格，共100个三维位置\\
+后处理 & 由S参数构造三相位REV功率，恢复两副阵列复响应，并进行MUSIC和常规波束形成三维搜索\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{仿真与后处理流程}
+
+FEKO阶段按照以下流程实施：
+
+\begin{enumerate}
+  \item 在CADFEKO和EDITFEKO中建立房间、两副阵列、信源和端口配置；
+  \item 使用MATLAB按照100个信源坐标批量生成FEKO输入文件和运行脚本；
+  \item 对每个位置求解129端口S参数，并保留求解日志和模型文件；
+  \item MATLAB读取两个阵列的阵元响应，构造$0^\circ$、$90^\circ$和$180^\circ$三相位功率；
+  \item REV分别恢复两副阵列的复响应，将128阵元响应合并后，使用球面距离构造近场导向矢量；
+  \item MUSIC和常规波束形成在统一三维网格上搜索位置，并保存逐点估计位置、误差统计和空间分布图。
+\end{enumerate}
+\endgroup
+
+\clearpage
+\section{实物实验设计}
+
+\subsection{实验目的}
+
+实物实验用于检验真实仪器、阵列控制模块、贴片阵列和室内传播环境下的数据采集能力，并验证从功率观测到复响应恢复、阵位级DOA和多阵位定位的完整链路。实物系统的阵列结构、工作频率和阵位布置依据现场设备条件设置，与MATLAB和FEKO仿真模型分别记录。
+
+\subsection{硬件和测量设置}
+
+\begin{table}[htbp]
+\centering
+\caption{实物实验实际设计}
+\begin{tabularx}{\textwidth}{p{3.2cm}Y}
+\toprule
+项目 & 设置\\
+\midrule
+测量仪器 & Anritsu MS46322B矢量网络分析仪\\
+阵列控制模块 & Jiexi BCS3085A-32T1-B1，1入32出\\
+实体阵列 & $4\times8$微带贴片阵列，共32个阵元；数据处理中按$x$方向8元、$z$方向4元记为$8\times4$\\
+阵元间距 & 两个方向均为3.5 cm\\
+扫频范围 & 4.5--5.5 GHz，共2001个频点，中心频率5.0 GHz\\
+阵列姿态 & 阵面平行于$xoz$平面，法向朝$+y$\\
+多阵位实现 & 使用同一副实体阵列依次移动到四个已记录位置，对同一信源进行测量\\
+核心采集 & 每个阵元依次施加八个唯一相移，并采集一个$360^\circ$重复状态\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+仿真中的两副8×8阵列用于同时提供两个方向约束；实物实验受现有硬件条件限制，使用一副4×8阵列在不同位置依次采集，从数据处理角度形成多个分布式阵位。两种设置承担相同的多阵位定位功能，但阵列规模、工作频率和采集方式分别建模，不直接混用参数。
+
+\subsection{测量与处理流程}
+
+\begin{enumerate}
+  \item 记录信源位置、阵列中心位置、阵元坐标和阵面姿态；
+  \item 在每个阵位完成REV相移状态下的宽带复数S参数采集；
+  \item 对REV总响应取模平方，隔离VNA相位后进行功率谐波拟合，获得阵元相对复响应；
+  \item 将每个阵位的复响应分别送入宽带Bartlett和单快拍形式MUSIC测向；
+  \item 将不同阵位的方向结果转换到统一坐标系，完成两、三和四阵位联合定位；
+  \item 检查功率恢复有效性、方向射线朝向和多射线交汇状态，保存预测坐标与质量指标。
+\end{enumerate}
+
+为检查功率REV恢复是否合理，实物阶段还保留三类参考测量：复数DFT、On/Off和Hadamard。参考数据只承担交叉检查作用，不改变“功率观测--REV恢复--DOA--多阵位定位”的核心设计。各类参考数据的具体处理和比较结果归入实物实验记录。
+
+\section{评价指标}
+
+评价指标根据现有MATLAB、FEKO和实测程序能够实际输出的内容设置，不规定目标值。
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{4.1cm}>{\raggedright\arraybackslash}p{7.2cm}}
+\caption{各验证阶段使用的评价指标}\\
+\toprule
+阶段 & 指标类别 & 指标\\
+\midrule
+\endfirsthead
+\toprule
+阶段 & 指标类别 & 指标\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+MATLAB & 方向与定位 & 方位角误差、俯仰角误差、三维定位误差、有效定位点数\\
+MATLAB & 统计与比较 & 定位误差均值、中位数、最大值，不同多径系数和高度下的空间分布，MUSIC与常规波束形成逐场景比较\\
+FEKO & 定位统计 & 三维定位误差、均值、中位数、最小值、最大值、分位数、有效位置数\\
+FEKO & 空间分析 & 按高度层统计、误差空间分布、误差与信源到阵列距离的关系、MUSIC与常规波束形成比较\\
+实物实验 & 复响应恢复 & 功率恢复有效率、复响应相干系数、公共复标量对齐后的相位RMSE、复数NMSE、幅度NRMSE、相移闭合误差\\
+实物实验 & 方向与定位 & 阵位级DOA角误差或方向差、两/三/四阵位定位误差、估计坐标、射线RMS、全部射线向前检查、数值有效解比例\\
+实物实验 & 算法比较 & 相同复响应输入下MUSIC与Bartlett的DOA差异、定位误差差值和几何有效性比较\\
+\end{longtable}
+
+定位误差衡量预测坐标相对于记录真值的偏差；射线RMS衡量多条方向射线相互交汇的一致性，两者含义不同，均予以保留。复响应比较只允许使用一个对全部阵元公共的复标量对齐，以消除不影响方向估计的整体增益和相位零点，不进行逐阵元调参。
+
+\section{可行性与误差因素}
+
+\subsection{实施基础}
+
+项目已形成相互衔接的算法和实验条件：MATLAB程序能够生成阵元接收信号并完成REV、两种测向和定位；FEKO模型能够批量生成多位置S参数并进入同一后处理链；实物平台能够控制32阵元相移状态并保存宽带测量数据。各阶段均保留中间数据，使复响应恢复、方向估计和位置求解可以分别复核。
+
+\subsection{主要误差因素}
+
+方案实施时重点考虑以下因素：
+
+\begin{itemize}
+  \item 室内反射和遮挡改变阵元间相对波前，造成自由空间导向模型失配；
+  \item 阵元互耦、通道增益和相位差异影响复响应恢复；
+  \item 移相误差、开关隔离度和测量期间漂移影响功率曲线拟合；
+  \item 阵列中心、信源位置和阵面姿态的记录误差进入全局坐标转换；
+  \item 方向射线夹角过小时，测向误差会被几何交汇放大；
+  \item 单快拍与多快拍数据条件不同，MUSIC的实现方式和解释范围需要分别说明。
+\end{itemize}
+
+这些因素分别通过参数化多径扫描、FEKO电磁模型、实测参考数据、方向射线检查和分层指标进行观察。方案不预设单一误差源对最终定位偏差的贡献比例。
+
+\section{研究阶段与成果组织}
+
+研究工作按以下顺序组织：
+
+\begin{enumerate}
+  \item 完成室内定位、REV、MUSIC和常规波束形成的理论学习与方案论证；
+  \item 在MATLAB中建立功率REV、方向估计和双阵位定位链路，并开展参数和空间扫描；
+  \item 在FEKO中建立房间、阵列和信源模型，批量生成多位置端口数据并完成后处理；
+  \item 搭建实物测量链路，采集多阵位宽带数据，完成功率REV和多阵位定位；
+  \item 整理算法代码、仿真工程、实验记录、定位软件和结题材料。
+\end{enumerate}
+
+对应成果包括MATLAB仿真代码与记录、FEKO工程与仿真记录、实物实验代码与记录、输入阵列及功率数据并输出预测坐标的软件，以及结题报告、心得和展板等材料。
+
+\section{方案小结}
+
+本方案以功率REV复响应恢复为前端，以MUSIC和常规波束形成为方向估计方法，以多阵位空间射线交汇为位置求解方法。MATLAB和FEKO阶段使用两副8×8阵列验证算法与电磁模型，实物阶段使用一副4×8阵列移动形成多个阵位，三者按各自实际设置独立建模。方案中的评价指标均来自现有程序和实验流程，具体结果由相应仿真记录、实验报告和结题报告给出。
+
+\end{document}

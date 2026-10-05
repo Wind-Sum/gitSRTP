@@ -1,0 +1,325 @@
+{
+  "size_mm": [
+    900,
+    1500
+  ],
+  "template": "结项成果\\结题报告相关\\展板\\大学生创新创业成果展示展板模板",
+  "layers": [
+    {
+      "layer": "项目名称 上行",
+      "text": "分布式相控阵使能的",
+      "font": "SourceHanSansCN-Heavy",
+      "size_px": 126,
+      "lines": 1,
+      "alignment": "center",
+      "bounds": [
+        190,
+        425,
+        2100,
+        195
+      ]
+    },
+    {
+      "layer": "项目名称 下行",
+      "text": "物联网设备高精度定位",
+      "font": "SourceHanSansCN-Heavy",
+      "size_px": 126,
+      "lines": 1,
+      "alignment": "center",
+      "bounds": [
+        190,
+        585,
+        2100,
+        195
+      ]
+    },
+    {
+      "layer": "项目编号",
+      "text": "202661066",
+      "font": "SourceHanSansCN-Bold",
+      "size_px": 61,
+      "lines": 1,
+      "alignment": "left",
+      "bounds": [
+        550,
+        850,
+        530,
+        95
+      ]
+    },
+    {
+      "layer": "指导教师",
+      "text": "范伟",
+      "font": "SourceHanSansCN-Bold",
+      "size_px": 61,
+      "lines": 1,
+      "alignment": "left",
+      "bounds": [
+        1545,
+        850,
+        700,
+        95
+      ]
+    },
+    {
+      "layer": "成员 王越",
+      "text": "王越（61524435）",
+      "font": "SourceHanSansCN-Regular",
+      "size_px": 47,
+      "lines": 1,
+      "alignment": "left",
+      "bounds": [
+        315,
+        1240,
+        610,
+        73
+      ]
+    },
+    {
+      "layer": "成员 杨天宇",
+      "text": "杨天宇（61524334）",
+      "font": "SourceHanSansCN-Regular",
+      "size_px": 47,
+      "lines": 1,
+      "alignment": "left",
+      "bounds": [
+        1000,
+        1240,
+        655,
+        73
+      ]
+    },
+    {
+      "layer": "成员 杨沛峰",
+      "text": "杨沛峰（04024331）",
+      "font": "SourceHanSansCN-Regular",
+      "size_px": 47,
+      "lines": 1,
+      "alignment": "left",
+      "bounds": [
+        1690,
+        1240,
+        620,
+        73
+      ]
+    },
+    {
+      "layer": "成员学院",
+      "text": "吴健雄学院 / 信息科学与工程学院",
+      "font": "SourceHanSansCN-Regular",
+      "size_px": 38,
+      "lines": 1,
+      "alignment": "left",
+      "bounds": [
+        315,
+        1350,
+        1900,
+        59
+      ]
+    },
+    {
+      "layer": "项目简介",
+      "text": "本项目面向室内物联网终端，研究低成本的分布式相控阵 AOA 定位方法。通过受控改变阵元相位，仅利用合成功率观测，采用 REV 恢复阵元相对幅相；再由 MUSIC 与 Bartlett 估计各阵位到达方向，通过多阵位交汇求解三维坐标。\n项目已完成 MATLAB 算法仿真、FEKO 电磁仿真和实物实验闭环，并开发相控阵 AOA 定位软件，形成从功率输入到位置输出的完整处理流程。",
+      "font": "SourceHanSansCN-Regular",
+      "size_px": 43,
+      "lines": 7,
+      "alignment": "justified",
+      "bounds": [
+        230,
+        1780,
+        1140,
+        476
+      ]
+    },
+    {
+      "layer": "室内高位双相控阵 AOA 定位场景示意",
+      "image": "结项成果\\结题报告相关\\展板\\候选图片\\双相控阵AOA定位_房间高位安装示意.png"
+    },
+    {
+      "layer": "AOA 场景图注",
+      "text": "图1 室内双相控阵 AOA 定位场景示意",
+      "font": "SourceHanSansCN-Bold",
+      "size_px": 29,
+      "lines": 1,
+      "alignment": "center",
+      "bounds": [
+        1424,
+        2390,
+        860,
+        45
+      ]
+    },
+    {
+      "layer": "研究成果 1",
+      "text": "三级验证：MATLAB 5700 个定位点；FEKO 100 个信源位置；实测四分支闭环。",
+      "font": "SourceHanSansCN-Regular",
+      "size_px": 40,
+      "lines": 1,
+      "alignment": "left",
+      "bounds": [
+        230,
+        2810,
+        2010,
+        62
+      ]
+    },
+    {
+      "layer": "研究成果 2",
+      "text": "全量对照：469 种复响应方法，每种测向算法运行 5159 条两 / 三 / 四阵位定位链。",
+      "font": "SourceHanSansCN-Regular",
+      "size_px": 40,
+      "lines": 1,
+      "alignment": "left",
+      "bounds": [
+        230,
+        2884,
+        2010,
+        62
+      ]
+    },
+    {
+      "layer": "研究成果 3",
+      "text": "核心结果：功率 REV 与复数参考相互印证，完成 MUSIC / Bartlett 同输入流程对照。",
+      "font": "SourceHanSansCN-Regular",
+      "size_px": 40,
+      "lines": 1,
+      "alignment": "left",
+      "bounds": [
+        230,
+        2958,
+        2010,
+        62
+      ]
+    },
+    {
+      "layer": "创新点标题 1",
+      "text": "1. 仅功率恢复复响应",
+      "font": "SourceHanSansCN-Bold",
+      "size_px": 39,
+      "lines": 1,
+      "alignment": "left",
+      "bounds": [
+        232,
+        3350,
+        1135,
+        60
+      ]
+    },
+    {
+      "layer": "创新点正文 1",
+      "text": "通过阵元受控移相恢复相对幅相，为降低逐通道相位测量成本提供方法基础。",
+      "font": "SourceHanSansCN-Regular",
+      "size_px": 35,
+      "lines": 2,
+      "alignment": "justified",
+      "bounds": [
+        232,
+        3410,
+        1135,
+        104
+      ]
+    },
+    {
+      "layer": "创新点标题 2",
+      "text": "2. 多阵位联合定位",
+      "font": "SourceHanSansCN-Bold",
+      "size_px": 39,
+      "lines": 1,
+      "alignment": "left",
+      "bounds": [
+        232,
+        3538,
+        1135,
+        60
+      ]
+    },
+    {
+      "layer": "创新点正文 2",
+      "text": "利用多个方向约束求解三维坐标，适应窄带信号条件，减轻终端负担。",
+      "font": "SourceHanSansCN-Regular",
+      "size_px": 35,
+      "lines": 1,
+      "alignment": "justified",
+      "bounds": [
+        232,
+        3598,
+        1135,
+        52
+      ]
+    },
+    {
+      "layer": "创新点标题 3",
+      "text": "3. 四分支交叉验证",
+      "font": "SourceHanSansCN-Bold",
+      "size_px": 39,
+      "lines": 1,
+      "alignment": "left",
+      "bounds": [
+        232,
+        3674,
+        1135,
+        60
+      ]
+    },
+    {
+      "layer": "创新点正文 3",
+      "text": "与复数 DFT、On/Off、Hadamard 对照，开展全相移子集与双算法比较。",
+      "font": "SourceHanSansCN-Regular",
+      "size_px": 35,
+      "lines": 1,
+      "alignment": "justified",
+      "bounds": [
+        232,
+        3734,
+        1135,
+        52
+      ]
+    },
+    {
+      "layer": "四分支复响应相干矩阵",
+      "image": "tmp\\poster\\response_coherence.png"
+    },
+    {
+      "layer": "相干矩阵图注",
+      "text": "图2 四分支复响应相干系数",
+      "font": "SourceHanSansCN-Bold",
+      "size_px": 28,
+      "lines": 1,
+      "alignment": "center",
+      "bounds": [
+        1430,
+        3770,
+        820,
+        43
+      ]
+    },
+    {
+      "layer": "图注口径",
+      "text": "标准 51 频点；四阵位中位数",
+      "font": "SourceHanSansCN-Regular",
+      "size_px": 26,
+      "lines": 1,
+      "alignment": "center",
+      "bounds": [
+        1430,
+        3815,
+        820,
+        40
+      ]
+    },
+    {
+      "layer": "实测结论",
+      "text": "功率 REV 与同源参考相干系数 0.943\n四分支仍存在约 1.1 m 共同定位偏差",
+      "font": "SourceHanSansCN-Regular",
+      "size_px": 27,
+      "lines": 2,
+      "alignment": "center",
+      "bounds": [
+        1430,
+        3862,
+        820,
+        78
+      ]
+    }
+  ]
+}

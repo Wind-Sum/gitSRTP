@@ -1,0 +1,1463 @@
+{
+  "status": "draft QA; not final submission certification",
+  "template_sha256": "38f56b63e7b327dfc99dbc61e06c047629bd9b632b49b73a44d0bc2a7a064ec0",
+  "template_matches_backup": true,
+  "page_geometry_preserved_all_sections": [
+    true,
+    true,
+    true
+  ],
+  "original_embedded_parts_preserved": true,
+  "equations_omml": 16,
+  "svg_media": 6,
+  "svg_embedding_links": 6,
+  "figures": 6,
+  "tables": 3,
+  "caption_bookmarks": [
+    "Figure1",
+    "Figure2",
+    "Table1",
+    "Figure3",
+    "Figure4",
+    "Table2",
+    "Table3",
+    "Figure5",
+    "Figure6"
+  ],
+  "unresolved_reference_errors": false,
+  "format_agent_preflight": {
+    "path": "D:\\UniFile\\Grade2\\SRTP\\结项成果\\结题报告相关\\结题论文\\SRTP结题报告.docx",
+    "file_size": 306286,
+    "story_parts": [
+      {
+        "part": "word/document.xml",
+        "kind": "main",
+        "entries": 0,
+        "paragraphs": 382,
+        "tables": 3,
+        "nested_tables": 0,
+        "merged_cells": 0,
+        "textboxes": 0,
+        "content_controls": 0,
+        "tracked_changes": 0,
+        "drawings": 6,
+        "floating_drawings": 0,
+        "inline_drawings": 6,
+        "math_objects": 16,
+        "fields": 52,
+        "field_types": {
+          "PAGEREF": 33,
+          "REF": 9,
+          "SEQ": 9,
+          "TOC": 1
+        },
+        "all_field_types": {
+          "PAGEREF": 33,
+          "REF": 9,
+          "SEQ": 9,
+          "TOC": 1
+        },
+        "field_instructions": [
+          "PAGEREF _Toc242110821 \\h",
+          "PAGEREF _Toc242110822 \\h",
+          "PAGEREF _Toc242110823 \\h",
+          "PAGEREF _Toc242110824 \\h",
+          "PAGEREF _Toc242110825 \\h",
+          "PAGEREF _Toc242110826 \\h",
+          "PAGEREF _Toc242110827 \\h",
+          "PAGEREF _Toc242110828 \\h",
+          "PAGEREF _Toc242110829 \\h",
+          "PAGEREF _Toc242110830 \\h",
+          "PAGEREF _Toc242110831 \\h",
+          "PAGEREF _Toc242110832 \\h",
+          "PAGEREF _Toc242110833 \\h",
+          "PAGEREF _Toc242110834 \\h",
+          "PAGEREF _Toc242110835 \\h",
+          "PAGEREF _Toc242110836 \\h",
+          "PAGEREF _Toc242110837 \\h",
+          "PAGEREF _Toc242110838 \\h",
+          "PAGEREF _Toc242110839 \\h",
+          "PAGEREF _Toc242110840 \\h",
+          "PAGEREF _Toc242110841 \\h",
+          "PAGEREF _Toc242110842 \\h",
+          "PAGEREF _Toc242110843 \\h",
+          "PAGEREF _Toc242110844 \\h",
+          "PAGEREF _Toc242110845 \\h",
+          "PAGEREF _Toc242110846 \\h",
+          "PAGEREF _Toc242110847 \\h",
+          "PAGEREF _Toc242110848 \\h",
+          "PAGEREF _Toc242110849 \\h",
+          "PAGEREF _Toc242110850 \\h",
+          "PAGEREF _Toc242110851 \\h",
+          "PAGEREF _Toc242110852 \\h",
+          "PAGEREF _Toc242110853 \\h",
+          "TOC \\o \"1-2\" \\h \\z \\u",
+          "REF Figure1 \\h",
+          "SEQ Figure \\* ARABIC",
+          "REF Figure2 \\h",
+          "SEQ Figure \\* ARABIC",
+          "REF Table1 \\h",
+          "SEQ Table \\* ARABIC",
+          "REF Figure3 \\h",
+          "SEQ Figure \\* ARABIC",
+          "REF Figure4 \\h",
+          "REF Table2 \\h",
+          "SEQ Figure \\* ARABIC",
+          "SEQ Table \\* ARABIC",
+          "REF Table3 \\h",
+          "SEQ Table \\* ARABIC",
+          "SEQ Figure \\* ARABIC",
+          "REF Figure5 \\h",
+          "SEQ Figure \\* ARABIC",
+          "REF Figure6 \\h"
+        ],
+        "cross_reference_targets": [
+          "_Toc242110821",
+          "_Toc242110822",
+          "_Toc242110823",
+          "_Toc242110824",
+          "_Toc242110825",
+          "_Toc242110826",
+          "_Toc242110827",
+          "_Toc242110828",
+          "_Toc242110829",
+          "_Toc242110830",
+          "_Toc242110831",
+          "_Toc242110832",
+          "_Toc242110833",
+          "_Toc242110834",
+          "_Toc242110835",
+          "_Toc242110836",
+          "_Toc242110837",
+          "_Toc242110838",
+          "_Toc242110839",
+          "_Toc242110840",
+          "_Toc242110841",
+          "_Toc242110842",
+          "_Toc242110843",
+          "_Toc242110844",
+          "_Toc242110845",
+          "_Toc242110846",
+          "_Toc242110847",
+          "_Toc242110848",
+          "_Toc242110849",
+          "_Toc242110850",
+          "_Toc242110851",
+          "_Toc242110852",
+          "_Toc242110853",
+          "Figure1",
+          "Figure2",
+          "Table1",
+          "Figure3",
+          "Figure4",
+          "Table2",
+          "Table3",
+          "Figure5",
+          "Figure6"
+        ],
+        "bookmarks": [
+          "Figure1",
+          "Figure2",
+          "Figure3",
+          "Figure4",
+          "Figure5",
+          "Figure6",
+          "Table1",
+          "Table2",
+          "Table3",
+          "_Toc242110821",
+          "_Toc242110822",
+          "_Toc242110823",
+          "_Toc242110824",
+          "_Toc242110825",
+          "_Toc242110826",
+          "_Toc242110827",
+          "_Toc242110828",
+          "_Toc242110829",
+          "_Toc242110830",
+          "_Toc242110831",
+          "_Toc242110832",
+          "_Toc242110833",
+          "_Toc242110834",
+          "_Toc242110835",
+          "_Toc242110836",
+          "_Toc242110837",
+          "_Toc242110838",
+          "_Toc242110839",
+          "_Toc242110840",
+          "_Toc242110841",
+          "_Toc242110842",
+          "_Toc242110843",
+          "_Toc242110844",
+          "_Toc242110845",
+          "_Toc242110846",
+          "_Toc242110847",
+          "_Toc242110848",
+          "_Toc242110849",
+          "_Toc242110850",
+          "_Toc242110851",
+          "_Toc242110852",
+          "_Toc242110853"
+        ],
+        "hyperlinks": 33,
+        "alt_chunks": 0
+      },
+      {
+        "part": "word/endnotes.xml",
+        "kind": "endnotes",
+        "entries": 0,
+        "paragraphs": 2,
+        "tables": 0,
+        "nested_tables": 0,
+        "merged_cells": 0,
+        "textboxes": 0,
+        "content_controls": 0,
+        "tracked_changes": 0,
+        "drawings": 0,
+        "floating_drawings": 0,
+        "inline_drawings": 0,
+        "math_objects": 0,
+        "fields": 0,
+        "field_types": {},
+        "all_field_types": {},
+        "field_instructions": [],
+        "cross_reference_targets": [],
+        "bookmarks": [],
+        "hyperlinks": 0,
+        "alt_chunks": 0
+      },
+      {
+        "part": "word/footer1.xml",
+        "kind": "footer",
+        "entries": 0,
+        "paragraphs": 1,
+        "tables": 0,
+        "nested_tables": 0,
+        "merged_cells": 0,
+        "textboxes": 0,
+        "content_controls": 0,
+        "tracked_changes": 0,
+        "drawings": 0,
+        "floating_drawings": 0,
+        "inline_drawings": 0,
+        "math_objects": 0,
+        "fields": 1,
+        "field_types": {
+          "PAGE": 1
+        },
+        "all_field_types": {
+          "PAGE": 1
+        },
+        "field_instructions": [
+          "PAGE"
+        ],
+        "cross_reference_targets": [],
+        "bookmarks": [],
+        "hyperlinks": 0,
+        "alt_chunks": 0
+      },
+      {
+        "part": "word/footer2.xml",
+        "kind": "footer",
+        "entries": 0,
+        "paragraphs": 1,
+        "tables": 0,
+        "nested_tables": 0,
+        "merged_cells": 0,
+        "textboxes": 0,
+        "content_controls": 0,
+        "tracked_changes": 0,
+        "drawings": 0,
+        "floating_drawings": 0,
+        "inline_drawings": 0,
+        "math_objects": 0,
+        "fields": 1,
+        "field_types": {
+          "PAGE": 1
+        },
+        "all_field_types": {
+          "PAGE": 1
+        },
+        "field_instructions": [
+          "PAGE"
+        ],
+        "cross_reference_targets": [],
+        "bookmarks": [],
+        "hyperlinks": 0,
+        "alt_chunks": 0
+      },
+      {
+        "part": "word/footnotes.xml",
+        "kind": "footnotes",
+        "entries": 0,
+        "paragraphs": 2,
+        "tables": 0,
+        "nested_tables": 0,
+        "merged_cells": 0,
+        "textboxes": 0,
+        "content_controls": 0,
+        "tracked_changes": 0,
+        "drawings": 0,
+        "floating_drawings": 0,
+        "inline_drawings": 0,
+        "math_objects": 0,
+        "fields": 0,
+        "field_types": {},
+        "all_field_types": {},
+        "field_instructions": [],
+        "cross_reference_targets": [],
+        "bookmarks": [],
+        "hyperlinks": 0,
+        "alt_chunks": 0
+      }
+    ],
+    "story_counts": {
+      "endnotes": {
+        "entries": 0,
+        "paragraphs": 2,
+        "tables": 0,
+        "textboxes": 0,
+        "content_controls": 0,
+        "nested_tables": 0,
+        "merged_cells": 0,
+        "tracked_changes": 0,
+        "drawings": 0,
+        "floating_drawings": 0,
+        "inline_drawings": 0,
+        "math_objects": 0,
+        "fields": 0,
+        "hyperlinks": 0,
+        "alt_chunks": 0,
+        "parts": 1
+      },
+      "footer": {
+        "entries": 0,
+        "paragraphs": 2,
+        "tables": 0,
+        "textboxes": 0,
+        "content_controls": 0,
+        "nested_tables": 0,
+        "merged_cells": 0,
+        "tracked_changes": 0,
+        "drawings": 0,
+        "floating_drawings": 0,
+        "inline_drawings": 0,
+        "math_objects": 0,
+        "fields": 2,
+        "hyperlinks": 0,
+        "alt_chunks": 0,
+        "parts": 2
+      },
+      "footnotes": {
+        "entries": 0,
+        "paragraphs": 2,
+        "tables": 0,
+        "textboxes": 0,
+        "content_controls": 0,
+        "nested_tables": 0,
+        "merged_cells": 0,
+        "tracked_changes": 0,
+        "drawings": 0,
+        "floating_drawings": 0,
+        "inline_drawings": 0,
+        "math_objects": 0,
+        "fields": 0,
+        "hyperlinks": 0,
+        "alt_chunks": 0,
+        "parts": 1
+      },
+      "main": {
+        "entries": 0,
+        "paragraphs": 382,
+        "tables": 3,
+        "textboxes": 0,
+        "content_controls": 0,
+        "nested_tables": 0,
+        "merged_cells": 0,
+        "tracked_changes": 0,
+        "drawings": 6,
+        "floating_drawings": 0,
+        "inline_drawings": 6,
+        "math_objects": 16,
+        "fields": 52,
+        "hyperlinks": 33,
+        "alt_chunks": 0,
+        "parts": 1
+      }
+    },
+    "section_count": 3,
+    "sections": [
+      {
+        "section_index": 0,
+        "type": "nextPage",
+        "page_width_twips": 11906,
+        "page_height_twips": 16838,
+        "orientation": "portrait",
+        "margin_twips": {
+          "top": 1440,
+          "bottom": 1440,
+          "left": 1800,
+          "right": 1800
+        },
+        "columns": 1,
+        "page_number_format": null,
+        "page_number_start": null,
+        "header_references": 0,
+        "footer_references": 0,
+        "different_first_page": false
+      },
+      {
+        "section_index": 1,
+        "type": "nextPage",
+        "page_width_twips": 11906,
+        "page_height_twips": 16838,
+        "orientation": "portrait",
+        "margin_twips": {
+          "top": 1440,
+          "bottom": 1440,
+          "left": 1800,
+          "right": 1800
+        },
+        "columns": 1,
+        "page_number_format": "lowerRoman",
+        "page_number_start": 1,
+        "header_references": 0,
+        "footer_references": 1,
+        "different_first_page": false
+      },
+      {
+        "section_index": 2,
+        "type": "nextPage",
+        "page_width_twips": 11906,
+        "page_height_twips": 16838,
+        "orientation": "portrait",
+        "margin_twips": {
+          "top": 1440,
+          "bottom": 1440,
+          "left": 1800,
+          "right": 1800
+        },
+        "columns": 1,
+        "page_number_format": null,
+        "page_number_start": 1,
+        "header_references": 0,
+        "footer_references": 1,
+        "different_first_page": false
+      }
+    ],
+    "top_level_table_count": 3,
+    "embedded_objects": 1,
+    "media_files": 13,
+    "external_relationship_count": 0,
+    "external_relationship_types": {},
+    "has_macros": false,
+    "has_digital_signatures": false,
+    "has_document_protection": false,
+    "field_inventory": {
+      "PAGE": 2,
+      "PAGEREF": 33,
+      "REF": 9,
+      "SEQ": 9,
+      "TOC": 1
+    },
+    "all_field_inventory": {
+      "PAGE": 2,
+      "PAGEREF": 33,
+      "REF": 9,
+      "SEQ": 9,
+      "TOC": 1
+    },
+    "unsafe_field_inventory": {},
+    "bookmark_names": [
+      "Figure1",
+      "Figure2",
+      "Figure3",
+      "Figure4",
+      "Figure5",
+      "Figure6",
+      "Table1",
+      "Table2",
+      "Table3",
+      "_Toc242110821",
+      "_Toc242110822",
+      "_Toc242110823",
+      "_Toc242110824",
+      "_Toc242110825",
+      "_Toc242110826",
+      "_Toc242110827",
+      "_Toc242110828",
+      "_Toc242110829",
+      "_Toc242110830",
+      "_Toc242110831",
+      "_Toc242110832",
+      "_Toc242110833",
+      "_Toc242110834",
+      "_Toc242110835",
+      "_Toc242110836",
+      "_Toc242110837",
+      "_Toc242110838",
+      "_Toc242110839",
+      "_Toc242110840",
+      "_Toc242110841",
+      "_Toc242110842",
+      "_Toc242110843",
+      "_Toc242110844",
+      "_Toc242110845",
+      "_Toc242110846",
+      "_Toc242110847",
+      "_Toc242110848",
+      "_Toc242110849",
+      "_Toc242110850",
+      "_Toc242110851",
+      "_Toc242110852",
+      "_Toc242110853"
+    ],
+    "cross_reference_targets": [
+      "_Toc242110821",
+      "_Toc242110822",
+      "_Toc242110823",
+      "_Toc242110824",
+      "_Toc242110825",
+      "_Toc242110826",
+      "_Toc242110827",
+      "_Toc242110828",
+      "_Toc242110829",
+      "_Toc242110830",
+      "_Toc242110831",
+      "_Toc242110832",
+      "_Toc242110833",
+      "_Toc242110834",
+      "_Toc242110835",
+      "_Toc242110836",
+      "_Toc242110837",
+      "_Toc242110838",
+      "_Toc242110839",
+      "_Toc242110840",
+      "_Toc242110841",
+      "_Toc242110842",
+      "_Toc242110843",
+      "_Toc242110844",
+      "_Toc242110845",
+      "_Toc242110846",
+      "_Toc242110847",
+      "_Toc242110848",
+      "_Toc242110849",
+      "_Toc242110850",
+      "_Toc242110851",
+      "_Toc242110852",
+      "_Toc242110853",
+      "Figure1",
+      "Figure2",
+      "Table1",
+      "Figure3",
+      "Figure4",
+      "Table2",
+      "Table3",
+      "Figure5",
+      "Figure6"
+    ],
+    "broken_cross_references": []
+  },
+  "paper_format_agent_score": 80.0,
+  "paper_format_agent_penalties": [
+    {
+      "name": "abstract_after_body",
+      "value": 20
+    }
+  ],
+  "toc_cache_false_positive_resolution": {
+    "removed_cached_toc_paragraphs_in_qa_copy": 33,
+    "scoped_score": 100.0,
+    "scoped_penalties": [],
+    "delivered_docx_changed": false
+  },
+  "body_style_checks": [
+    {
+      "index": 56,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 57,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 58,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 59,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 62,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 63,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 64,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 66,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 67,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 68,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 70,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 71,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 72,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 75,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 78,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 80,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 82,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 84,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 86,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 88,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 89,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 92,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 94,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 97,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 100,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 102,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 103,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 104,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 106,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 108,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 110,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 112,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 113,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 115,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 117,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 119,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 122,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 123,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 127,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 130,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 131,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 133,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 136,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 137,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 139,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 140,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 141,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 147,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 148,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 149,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 150,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 152,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 153,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 156,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 157,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 158,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 160,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 162,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 163,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 165,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 168,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 171,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 174,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 176,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 178,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 180,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 182,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 183,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 184,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 187,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 188,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 190,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 191,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 192,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 193,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 195,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 196,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 197,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 203,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    },
+    {
+      "index": 204,
+      "style": "SRTP 正文",
+      "effective": {
+        "ascii": "Times New Roman",
+        "size_pt": 12.0,
+        "language": "en-US",
+        "eastasia": "宋体",
+        "color": "000000"
+      }
+    }
+  ],
+  "qa_readonly": true,
+  "limitations": [
+    "school template contains no complete body typography specification; added body styles provisional",
+    "human scientific verification pending",
+    "measured results deferred pending MUSIC optimization",
+    "render_docx.py missing LibreOffice on Windows; native Microsoft Word used for equivalent page-image review"
+  ]
+}

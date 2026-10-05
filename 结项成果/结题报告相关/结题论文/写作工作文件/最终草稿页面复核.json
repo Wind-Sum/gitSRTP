@@ -1,0 +1,17 @@
+{
+  "docx_sha256": "a353e15e9cc4052173327fdf9951f218bc996380fdccfdbb423bdd157b125cb0",
+  "pages": 25,
+  "visual_review": "all 25 page patterns inspected; changed equation, vector-label and provenance pages re-inspected; unchanged pages compared by raster SHA256",
+  "reviewer": "Codex agent",
+  "human_approval": "pending",
+  "renderer": "native Microsoft Word 16.0, readonly final export",
+  "qa_path": "D:\\UniFile\\Grade2\\SRTP\\tmp\\report-draft\\render-reviewed",
+  "figures": [
+    "system-chain",
+    "rev-principle",
+    "matlab-gamma",
+    "matlab-height",
+    "feko-errors",
+    "feko-positions"
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "stage": "draft",
+  "agent_checked": "2026-10-05",
+  "human_verification": "pending",
+  "human_verifier": null,
+  "scope": "local simulation draft; measured results excluded",
+  "sources": [
+    {
+      "id": "E001",
+      "status": "agent_inspected_human_pending",
+      "files": [
+        {
+          "path": "MATLAB/New/report_output/simulation_data.mat",
+          "sha256": "5099e3f1390a23167b8e77da7750ed4f676438c34b14888ee7495aa420b7d520"
+        }
+      ]
+    },
+    {
+      "id": "E002",
+      "status": "agent_inspected_human_pending",
+      "files": [
+        {
+          "path": "FEKO/NewFeko/batch_results.mat",
+          "sha256": "7a657ffd865ecf6d78ec463db30171d5fa526d96d8ef6f52e2e4efb38274c41c"
+        }
+      ]
+    },
+    {
+      "id": "E003",
+      "status": "agent_inspected_human_pending",
+      "files": [
+        {
+          "path": "MATLAB/New/rev.m",
+          "sha256": "ae5365c59e76eb46531533a13f5586cd96997600d1bc878efff498aec3ddf5f4"
+        },
+        {
+          "path": "MATLAB/New/PhasedArray.m",
+          "sha256": "a63876f166244286c70bbc5a6b5222766fc098b1dc23402b745596c13dfb98ef"
+        },
+        {
+          "path": "MATLAB/New/music_doa.m",
+          "sha256": "bb33084424164e37ffe4b77fde6a209db7365e9755622211daca7d0751815de1"
+        },
+        {
+          "path": "MATLAB/New/beamforming_doa.m",
+          "sha256": "8de4c5fda7ea1bf5fec93a418579e09321b9712fdf722a1f35997355d58b310c"
+        },
+        {
+          "path": "MATLAB/New/aoa_localize.m",
+          "sha256": "e8bd9c240cd7aab773597376159e7ff1b813b8ae1d2f075791400b488232eb38"
+        },
+        {
+          "path": "MATLAB/New/calculate_indoor_field.m",
+          "sha256": "c2ee2a0a01034ddf8daeecbbab6f44e3a9c9260a3a0c70e17ba0b45a8458fa71"
+        },
+        {
+          "path": "MATLAB/New/generate_image_sources.m",
+          "sha256": "0f970d235ebf91c19820d8c30fd527adc5cbde6cc76218a3a5c570f980b5a441"
+        },
+        {
+          "path": "MATLAB/New/scan_3d_multipath.m",
+          "sha256": "1cfb5f21aaa10edd12d2684b5e93cbde096c1a2642878244cf1d268d552f1e29"
+        }
+      ]
+    },
+    {
+      "id": "E004",
+      "status": "agent_inspected_human_pending",
+      "files": [
+        {
+          "path": "FEKO/NewFeko/batch_process.m",
+          "sha256": "ae899a9a59664a4ea15ec1384579bf47b6f5956cf05a137400c318e9ee05809c"
+        },
+        {
+          "path": "FEKO/NewFeko/REV_calculate.m",
+          "sha256": "de050115f0c1f3e74b5ed7b36e6bad12d86e2d5191e38aab8c0d0ea9e6aaaa93"
+        },
+        {
+          "path": "FEKO/NewFeko/8x8x2.pre",
+          "sha256": "778464aa0bbf66af75c61a94ad29377f24701d1fdb2fc1134b3cc722cad0d064"
+        },
+        {
+          "path": "FEKO/NewFeko/8x8x2_pos1.out",
+          "sha256": "90fee9fbafbc74e9d11cd4bae023c4f5f25229f699e6bff3600d1f327da50f3e"
+        }
+      ]
+    },
+    {
+      "id": "E005",
+      "status": "agent_inspected_human_pending",
+      "files": [
+        {
+          "path": "立项材料/立项申报书—分布式相控阵使能的物联网设备高精度定位.docx",
+          "sha256": "05a3aef4beb49c74b5cc89767574f265c0af8063f64f2b037b66d9f571cc7573"
+        },
+        {
+          "path": "Agents/项目背景目的.md",
+          "sha256": "b4e6329dbc6709e8723b8a9cb57ee10de17901478976354c71e13cdb5c09063b"
+        }
+      ]
+    },
+    {
+      "id": "E006",
+      "status": "agent_inspected_human_pending",
+      "files": [
+        {
+          "path": "figures/source/data/report_statistics.json",
+          "sha256": "d21f18a2a808c31a4727b65f4df0e7cb5ed2456579a006412bd77640e0f6678e"
+        }
+      ]
+    },
+    {
+      "id": "E007",
+      "status": "agent_inspected_human_pending",
+      "files": [
+        {
+          "path": "结项成果/结题报告相关/结题论文/东南大学SRTP项目结题报告模板.docx",
+          "sha256": "38f56b63e7b327dfc99dbc61e06c047629bd9b632b49b73a44d0bc2a7a064ec0"
+        }
+      ]
+    },
+    {
+      "id": "E008",
+      "url": "https://onlinelibrary.wiley.com/doi/10.1002/ecja.4410650508",
+      "locator": "publisher metadata and abstract",
+      "status": "agent_inspected_human_pending"
+    },
+    {
+      "id": "E009",
+      "url": "https://ieeexplore.ieee.org/document/1143830",
+      "locator": "DOI metadata; full-text human check pending",
+      "status": "metadata_only_human_pending"
+    },
+    {
+      "id": "E010",
+      "url": "https://arxiv.org/abs/2609.00065",
+      "locator": "title authors 2026 current v2",
+      "status": "agent_inspected_human_pending"
+    }
+  ]
+}

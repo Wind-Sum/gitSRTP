@@ -1,0 +1,59 @@
+{
+  "score": 80.0,
+  "raw_quality_score": 80.0,
+  "chars_no_space": 12560,
+  "features": {
+    "chars_no_space": 12560,
+    "idx_abs": 55,
+    "idx_en_abs": null,
+    "idx_kw_zh": 59,
+    "idx_kw_en": null,
+    "idx_toc": 19,
+    "idx_intro": 21,
+    "enforce_required_sections": true,
+    "baseline_has_zh_abs": true,
+    "baseline_has_zh_keywords": true,
+    "baseline_has_en_abs": false,
+    "baseline_has_en_keywords": false,
+    "baseline_has_toc": true,
+    "required_zh_abs": true,
+    "required_zh_keywords": true,
+    "required_en_abs": false,
+    "required_en_keywords": false,
+    "required_toc": true,
+    "baseline_chars_no_space": 12560,
+    "chars_ratio_vs_baseline": 1.0,
+    "numpr_left": 0,
+    "marker_left": 0,
+    "heading_body_leak": 0,
+    "toc_heading_leak": 0,
+    "blank_page_risk": 0,
+    "prefix_non_empty_before_abs": 43,
+    "prefix_toc_like_before_abs": 30,
+    "prefix_long_body_like_before_abs": 0,
+    "prefix_toc_like_ratio_before_abs": 0.698,
+    "prefix_manual_toc_before_abs": false,
+    "min_chars": 0
+  },
+  "penalties": [
+    {
+      "name": "abstract_after_body",
+      "value": 20
+    }
+  ],
+  "diagnostics": [
+    {
+      "name": "abstract_after_body",
+      "category": "front_matter_order",
+      "severity": "high",
+      "penalty": 20,
+      "summary": "Abstract appears after body content.",
+      "suggested_fix": "Move the abstract and keyword sections before the introduction or first body heading.",
+      "evidence": {
+        "idx_abs": 55,
+        "idx_intro": 21
+      }
+    }
+  ],
+  "calibration": null
+}
